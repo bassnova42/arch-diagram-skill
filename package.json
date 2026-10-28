@@ -1,6 +1,6 @@
 {
   "name": "@rokoai/arch-diagram",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Claude Code & Codex skill: turn any repo or article into an animated architecture diagram (HTML / PNG / MP4 / GIF / Mermaid) with a live trace log",
   "type": "module",
   "bin": {
