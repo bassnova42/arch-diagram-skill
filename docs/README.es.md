@@ -8,7 +8,9 @@ Funciona con **Claude Code** y **Codex**.
 
 Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local. Claude Code o Codex entiende la estructura y dibuja un diagrama de arquitectura oscuro, estilo "plano de terminal". Por los cables circulan paquetes animados, y el log inferior añade una línea en tiempo real cada vez que dos módulos intercambian datos.
 
-![Diagrama de arquitectura de REA](rea.png)
+**Abajo: la arquitectura del proyecto de código abierto [morluto/rea](https://github.com/morluto/rea), generada por esta skill a partir de su repositorio de GitHub:**
+
+![arquitectura de morluto/rea](examples/rea.gif)
 
 ## Qué hace
 

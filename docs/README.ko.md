@@ -8,7 +8,9 @@
 
 GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 Codex가 구조를 파악해 어두운 "터미널 설계도" 스타일의 아키텍처 다이어그램을 그립니다. 연결선 위로 패킷이 흐르고, 모듈끼리 데이터를 주고받을 때마다 하단 로그에 한 줄씩 실시간으로 추가됩니다.
 
-![REA 아키텍처 다이어그램](rea.png)
+**아래는 오픈소스 프로젝트 [morluto/rea](https://github.com/morluto/rea)의 아키텍처 다이어그램으로, 이 Skill이 GitHub 저장소를 읽고 자동으로 생성했습니다:**
+
+![morluto/rea 아키텍처 다이어그램](examples/rea.gif)
 
 ## 주요 기능
 

@@ -8,7 +8,9 @@
 
 给它一个 GitHub 仓库、一篇技术文章、一份 PDF 或本地项目，Claude Code 或 Codex 会读懂结构，画出一张深色"终端蓝图"风格的架构图。连线上有流动的光点，底部的 log 会在模块之间交换数据时实时加一行。
 
-![REA 架构图](docs/rea.png)
+**下面是开源项目 [morluto/rea](https://github.com/morluto/rea) 的架构图，由这个 Skill 读取它的 GitHub 仓库自动生成：**
+
+![morluto/rea 架构图](docs/examples/rea.gif)
 
 ## 能做什么
 
