@@ -12,6 +12,8 @@ Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local
 
 ![arquitectura de morluto/rea](examples/rea.gif)
 
+Más ejemplos (un artículo, un repositorio de GitHub, un documento de requisitos) en [Ejemplos](#ejemplos), al final.
+
 ## Qué hace
 
 - **Estructura según el contenido**: sistema por capas, pipeline, proceso con bucles, hub y radios, carriles o jerarquía. Sin plantilla fija.
@@ -24,33 +26,6 @@ Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local
   - MP4: 20 segundos por defecto, la duración que pidas, bucle perfecto de 4 segundos
   - GIF: un ciclo
   - Diagrama de flujo Mermaid
-
-## Ejemplos
-
-### 1. Arquitectura de un artículo
-
-Fuente: artículo de Dave Rensin «Elephants, Goldfish, and the New Golden Age of Software Engineering»  
-<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
-
-![Arquitectura de un artículo](examples/elephant-goldfish.gif)
-
-[▶ Vídeo completo (MP4, 30 s)](examples/elephant-goldfish.mp4)
-
-### 2. Arquitectura de un repositorio de GitHub
-
-Fuente: <https://github.com/morluto/rea>
-
-![Arquitectura de un repositorio de GitHub](examples/rea.gif)
-
-[▶ Vídeo completo (MP4, 20 s)](examples/rea.mp4)
-
-### 3. Arquitectura de un documento de requisitos
-
-Fuente: el documento de requisitos (PRD) y el código de Ballet, una miniapp que puntúa movimientos de ballet. Proyecto privado, sin enlace público.
-
-![Arquitectura de un documento de requisitos](examples/ballet.gif)
-
-[▶ Vídeo completo (MP4, 20 s)](examples/ballet.mp4)
 
 ## El diagrama habla el idioma de tu prompt
 
@@ -129,6 +104,33 @@ skills/arch-diagram/
   examples/           rea (repositorio), plausible (repositorio), elephant-goldfish (artículo)
 bin/cli.mjs           comandos npm: install / uninstall / build / check / export
 ```
+
+## Ejemplos
+
+### 1. Arquitectura de un artículo
+
+Fuente: artículo de Dave Rensin «Elephants, Goldfish, and the New Golden Age of Software Engineering»  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![Arquitectura de un artículo](examples/elephant-goldfish.gif)
+
+[▶ Vídeo completo (MP4, 30 s)](examples/elephant-goldfish.mp4)
+
+### 2. Arquitectura de un repositorio de GitHub
+
+Fuente: <https://github.com/morluto/rea>
+
+![Arquitectura de un repositorio de GitHub](examples/rea.gif)
+
+[▶ Vídeo completo (MP4, 20 s)](examples/rea.mp4)
+
+### 3. Arquitectura de un documento de requisitos
+
+Fuente: el documento de requisitos (PRD) y el código de Ballet, una miniapp que puntúa movimientos de ballet. Proyecto privado, sin enlace público.
+
+![Arquitectura de un documento de requisitos](examples/ballet.gif)
+
+[▶ Vídeo completo (MP4, 20 s)](examples/ballet.mp4)
 
 ## Licencia
 

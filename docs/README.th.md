@@ -12,6 +12,8 @@
 
 ![แผนภาพสถาปัตยกรรมของ morluto/rea](examples/rea.gif)
 
+ตัวอย่างเพิ่มเติม (บทความ, GitHub repository, เอกสารความต้องการ) ดูได้ที่ [ตัวอย่าง](#ตัวอย่าง) ท้ายหน้า
+
 ## ทำอะไรได้บ้าง
 
 - **เลือกโครงสร้างตามเนื้อหา**: ระบบแบบเลเยอร์ ไปป์ไลน์ กระบวนการที่มีลูป แบบศูนย์กลาง-ซี่ล้อ สวิมเลน หรือแผนผังลำดับชั้น ไม่ใช้เทมเพลตตายตัว
@@ -24,33 +26,6 @@
   - MP4: ค่าเริ่มต้น 20 วินาที กำหนดความยาวได้ตามต้องการ วนซ้ำทุก 4 วินาทีอย่างไร้รอยต่อ
   - GIF: หนึ่งรอบ
   - ผังงาน Mermaid
-
-## ตัวอย่าง
-
-### 1. แผนภาพสถาปัตยกรรมจากบทความ
-
-ที่มา: บทความของ Dave Rensin “Elephants, Goldfish, and the New Golden Age of Software Engineering”  
-<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
-
-![แผนภาพสถาปัตยกรรมจากบทความ](examples/elephant-goldfish.gif)
-
-[▶ วิดีโอเต็ม (MP4, 30 วินาที)](examples/elephant-goldfish.mp4)
-
-### 2. แผนภาพสถาปัตยกรรมจาก GitHub repository
-
-ที่มา: <https://github.com/morluto/rea>
-
-![แผนภาพสถาปัตยกรรมจาก GitHub repository](examples/rea.gif)
-
-[▶ วิดีโอเต็ม (MP4, 20 วินาที)](examples/rea.mp4)
-
-### 3. แผนภาพสถาปัตยกรรมจากเอกสารความต้องการ
-
-ที่มา: เอกสารความต้องการ (PRD) และโค้ดของ Ballet มินิโปรแกรมให้คะแนนท่าบัลเลต์ เป็นโปรเจกต์ส่วนตัว จึงไม่มีลิงก์สาธารณะ
-
-![แผนภาพสถาปัตยกรรมจากเอกสารความต้องการ](examples/ballet.gif)
-
-[▶ วิดีโอเต็ม (MP4, 20 วินาที)](examples/ballet.mp4)
 
 ## ภาษาของแผนภาพเป็นไปตามภาษาของพรอมต์
 
@@ -129,6 +104,33 @@ skills/arch-diagram/
   examples/           rea (repository), plausible (repository), elephant-goldfish (บทความ)
 bin/cli.mjs           คำสั่ง npm: install / uninstall / build / check / export
 ```
+
+## ตัวอย่าง
+
+### 1. แผนภาพสถาปัตยกรรมจากบทความ
+
+ที่มา: บทความของ Dave Rensin “Elephants, Goldfish, and the New Golden Age of Software Engineering”  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![แผนภาพสถาปัตยกรรมจากบทความ](examples/elephant-goldfish.gif)
+
+[▶ วิดีโอเต็ม (MP4, 30 วินาที)](examples/elephant-goldfish.mp4)
+
+### 2. แผนภาพสถาปัตยกรรมจาก GitHub repository
+
+ที่มา: <https://github.com/morluto/rea>
+
+![แผนภาพสถาปัตยกรรมจาก GitHub repository](examples/rea.gif)
+
+[▶ วิดีโอเต็ม (MP4, 20 วินาที)](examples/rea.mp4)
+
+### 3. แผนภาพสถาปัตยกรรมจากเอกสารความต้องการ
+
+ที่มา: เอกสารความต้องการ (PRD) และโค้ดของ Ballet มินิโปรแกรมให้คะแนนท่าบัลเลต์ เป็นโปรเจกต์ส่วนตัว จึงไม่มีลิงก์สาธารณะ
+
+![แผนภาพสถาปัตยกรรมจากเอกสารความต้องการ](examples/ballet.gif)
+
+[▶ วิดีโอเต็ม (MP4, 20 วินาที)](examples/ballet.mp4)
 
 ## สัญญาอนุญาต
 

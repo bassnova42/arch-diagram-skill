@@ -12,6 +12,8 @@ GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを�
 
 ![morluto/rea のアーキテクチャ図](examples/rea.gif)
 
+ほかの作例（記事・GitHub リポジトリ・要件定義書）は末尾の [作例](#作例) をご覧ください。
+
 ## できること
 
 - **内容に合わせた構造**：レイヤー型システム、パイプライン、ループのあるプロセス、ハブ＆スポーク、スイムレーン、階層ツリー。固定テンプレートは使いません。
@@ -24,33 +26,6 @@ GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを�
   - MP4：デフォルト 20 秒、任意の長さに対応、4 秒周期のシームレスループ
   - GIF：1 周期
   - Mermaid フローチャート
-
-## 作例
-
-### 1. 記事から作ったアーキテクチャ図
-
-元データ: Dave Rensin の記事「Elephants, Goldfish, and the New Golden Age of Software Engineering」  
-<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
-
-![記事から作ったアーキテクチャ図](examples/elephant-goldfish.gif)
-
-[▶ フル動画（MP4、30 秒）](examples/elephant-goldfish.mp4)
-
-### 2. GitHub リポジトリから作ったアーキテクチャ図
-
-元データ: <https://github.com/morluto/rea>
-
-![GitHub リポジトリから作ったアーキテクチャ図](examples/rea.gif)
-
-[▶ フル動画（MP4、20 秒）](examples/rea.mp4)
-
-### 3. 要件定義書から作ったアーキテクチャ図
-
-元データ: バレエの動きを採点するミニプログラム Ballet の要件定義書（PRD）とコード。非公開プロジェクトのため公開リンクはありません。
-
-![要件定義書から作ったアーキテクチャ図](examples/ballet.gif)
-
-[▶ フル動画（MP4、20 秒）](examples/ballet.mp4)
 
 ## 図の言語はプロンプトの言語に合わせて決まります
 
@@ -128,6 +103,33 @@ skills/arch-diagram/
   examples/           rea（リポジトリ）、plausible（リポジトリ）、elephant-goldfish（記事）
 bin/cli.mjs           npm コマンド：install / uninstall / build / check / export
 ```
+
+## 作例
+
+### 1. 記事から作ったアーキテクチャ図
+
+元データ: Dave Rensin の記事「Elephants, Goldfish, and the New Golden Age of Software Engineering」  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![記事から作ったアーキテクチャ図](examples/elephant-goldfish.gif)
+
+[▶ フル動画（MP4、30 秒）](examples/elephant-goldfish.mp4)
+
+### 2. GitHub リポジトリから作ったアーキテクチャ図
+
+元データ: <https://github.com/morluto/rea>
+
+![GitHub リポジトリから作ったアーキテクチャ図](examples/rea.gif)
+
+[▶ フル動画（MP4、20 秒）](examples/rea.mp4)
+
+### 3. 要件定義書から作ったアーキテクチャ図
+
+元データ: バレエの動きを採点するミニプログラム Ballet の要件定義書（PRD）とコード。非公開プロジェクトのため公開リンクはありません。
+
+![要件定義書から作ったアーキテクチャ図](examples/ballet.gif)
+
+[▶ フル動画（MP4、20 秒）](examples/ballet.mp4)
 
 ## ライセンス
 

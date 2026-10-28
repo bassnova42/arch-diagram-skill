@@ -12,6 +12,8 @@ GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 
 
 ![morluto/rea 아키텍처 다이어그램](examples/rea.gif)
 
+다른 예시(글, GitHub 저장소, 요구사항 문서)는 맨 아래 [예시](#예시)에 있습니다.
+
 ## 주요 기능
 
 - **내용에 맞춘 구조**: 계층형 시스템, 파이프라인, 반복이 있는 프로세스, 허브 앤 스포크, 스윔레인, 계층 트리. 고정 템플릿을 쓰지 않습니다.
@@ -24,33 +26,6 @@ GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 
   - MP4: 기본 20초, 원하는 길이로 지정 가능, 4초 주기로 끊김 없이 반복
   - GIF: 한 주기
   - Mermaid 플로차트
-
-## 예시
-
-### 1. 글로 만든 아키텍처 다이어그램
-
-출처: Dave Rensin의 글 「Elephants, Goldfish, and the New Golden Age of Software Engineering」  
-<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
-
-![글로 만든 아키텍처 다이어그램](examples/elephant-goldfish.gif)
-
-[▶ 전체 영상 (MP4, 30초)](examples/elephant-goldfish.mp4)
-
-### 2. GitHub 저장소로 만든 아키텍처 다이어그램
-
-출처: <https://github.com/morluto/rea>
-
-![GitHub 저장소로 만든 아키텍처 다이어그램](examples/rea.gif)
-
-[▶ 전체 영상 (MP4, 20초)](examples/rea.mp4)
-
-### 3. 요구사항 문서로 만든 아키텍처 다이어그램
-
-출처: 발레 동작 채점 미니 프로그램 Ballet의 요구사항 문서(PRD)와 코드. 비공개 프로젝트라 공개 링크는 없습니다.
-
-![요구사항 문서로 만든 아키텍처 다이어그램](examples/ballet.gif)
-
-[▶ 전체 영상 (MP4, 20초)](examples/ballet.mp4)
 
 ## 다이어그램 언어는 프롬프트 언어를 따릅니다
 
@@ -129,6 +104,33 @@ skills/arch-diagram/
   examples/           rea(저장소), plausible(저장소), elephant-goldfish(글)
 bin/cli.mjs           npm 명령: install / uninstall / build / check / export
 ```
+
+## 예시
+
+### 1. 글로 만든 아키텍처 다이어그램
+
+출처: Dave Rensin의 글 「Elephants, Goldfish, and the New Golden Age of Software Engineering」  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![글로 만든 아키텍처 다이어그램](examples/elephant-goldfish.gif)
+
+[▶ 전체 영상 (MP4, 30초)](examples/elephant-goldfish.mp4)
+
+### 2. GitHub 저장소로 만든 아키텍처 다이어그램
+
+출처: <https://github.com/morluto/rea>
+
+![GitHub 저장소로 만든 아키텍처 다이어그램](examples/rea.gif)
+
+[▶ 전체 영상 (MP4, 20초)](examples/rea.mp4)
+
+### 3. 요구사항 문서로 만든 아키텍처 다이어그램
+
+출처: 발레 동작 채점 미니 프로그램 Ballet의 요구사항 문서(PRD)와 코드. 비공개 프로젝트라 공개 링크는 없습니다.
+
+![요구사항 문서로 만든 아키텍처 다이어그램](examples/ballet.gif)
+
+[▶ 전체 영상 (MP4, 20초)](examples/ballet.mp4)
 
 ## 라이선스
 
