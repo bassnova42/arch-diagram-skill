@@ -39,10 +39,10 @@ Requiere Node ≥ 18 y Chrome, Chromium o Edge. Para vídeo y GIF también hace 
 **Opción 1: npm** (la más sencilla)
 
 ```bash
-npx arch-diagram-skill install
+npx @rokoai/arch-diagram install
 ```
 
-Se instala en `~/.claude/skills/arch-diagram`. Con `--project` se instala en `.claude/skills/` del proyecto actual. Vuelve a ejecutarlo para actualizar; para desinstalar, `npx arch-diagram-skill uninstall`.
+Se instala en `~/.claude/skills/arch-diagram`. Con `--project` se instala en `.claude/skills/` del proyecto actual. Vuelve a ejecutarlo para actualizar; para desinstalar, `npx @rokoai/arch-diagram uninstall`.
 
 **Opción 2: plugin de Claude Code**. Ejecuta en Claude Code:
 
@@ -72,9 +72,9 @@ Pídelo directamente en Claude Code, por ejemplo:
 El origen de cada diagrama es `<slug>.spec.json`. Para cambiarlo, pide a Claude que edite el spec y lo regenere. También puedes usar la línea de comandos:
 
 ```bash
-npx arch-diagram-skill build  my.spec.json my.html
-npx arch-diagram-skill check  my.html
-npx arch-diagram-skill export my.html my.png my.mp4 --seconds 30
+npx @rokoai/arch-diagram build  my.spec.json my.html
+npx @rokoai/arch-diagram check  my.html
+npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 ```
 
 ## Estructura

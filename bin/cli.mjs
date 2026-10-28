@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// arch-diagram-skill: installs the skill into Claude Code and runs its scripts.
-//   npx arch-diagram-skill install [--project] [--dir <path>]
-//   npx arch-diagram-skill uninstall [--project] [--dir <path>]
-//   npx arch-diagram-skill build|check|export <args…>
+// @rokoai/arch-diagram: installs the skill into Claude Code and runs its scripts.
+//   npx @rokoai/arch-diagram install [--project] [--dir <path>]
+//   npx @rokoai/arch-diagram uninstall [--project] [--dir <path>]
+//   npx @rokoai/arch-diagram build|check|export <args…>
 import { cpSync, existsSync, rmSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -42,7 +42,7 @@ switch (cmd) {
     process.exit(r.status ?? 1);
   }
   default:
-    console.log(`arch-diagram-skill — animated architecture diagrams for Claude Code
+    console.log(`@rokoai/arch-diagram — animated architecture diagrams for Claude Code
 
   install    [--project | --dir <skills dir>]   copy the skill into ~/.claude/skills (or ./.claude/skills)
   uninstall  [--project | --dir <skills dir>]   remove it

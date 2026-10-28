@@ -1,14 +1,36 @@
 {
-  "name": "arch-diagram-skill",
+  "name": "@rokoai/arch-diagram",
   "version": "1.1.0",
   "description": "Claude Code skill: turn any repo or article into an animated architecture diagram (HTML / PNG / MP4 / GIF / Mermaid) with a live trace log",
   "type": "module",
-  "bin": { "arch-diagram-skill": "bin/cli.mjs" },
-  "files": ["bin", "skills", "README*.md", "LICENSE"],
-  "engines": { "node": ">=18" },
-  "keywords": ["claude-code", "claude-skill", "architecture", "diagram", "mermaid", "visualization"],
-  "repository": { "type": "git", "url": "git+https://github.com/bassnova42/arch-diagram-skill.git" },
+  "bin": {
+    "arch-diagram": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "README*.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude-code",
+    "claude-skill",
+    "architecture",
+    "diagram",
+    "mermaid",
+    "visualization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bassnova42/arch-diagram-skill.git"
+  },
   "homepage": "https://github.com/bassnova42/arch-diagram-skill#readme",
   "author": "bassnova42",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }

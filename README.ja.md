@@ -38,10 +38,10 @@ Node 18 以上と、Chrome / Chromium / Edge のいずれかが必要です。�
 **方法 1：npm**（いちばん簡単）
 
 ```bash
-npx arch-diagram-skill install
+npx @rokoai/arch-diagram install
 ```
 
-`~/.claude/skills/arch-diagram` にインストールされます。`--project` を付けると、現在のプロジェクトの `.claude/skills/` に入ります。更新するときはもう一度実行し、削除は `npx arch-diagram-skill uninstall` です。
+`~/.claude/skills/arch-diagram` にインストールされます。`--project` を付けると、現在のプロジェクトの `.claude/skills/` に入ります。更新するときはもう一度実行し、削除は `npx @rokoai/arch-diagram uninstall` です。
 
 **方法 2：Claude Code プラグイン**。Claude Code で次を実行します：
 
@@ -71,9 +71,9 @@ Claude Code でそのまま頼むだけです。例：
 図の元データは `<slug>.spec.json` です。修正したいときは Claude に spec を編集して再生成するよう頼みます。コマンドラインから直接操作することもできます：
 
 ```bash
-npx arch-diagram-skill build  my.spec.json my.html
-npx arch-diagram-skill check  my.html
-npx arch-diagram-skill export my.html my.png my.mp4 --seconds 30
+npx @rokoai/arch-diagram build  my.spec.json my.html
+npx @rokoai/arch-diagram check  my.html
+npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 ```
 
 ## ディレクトリ構成

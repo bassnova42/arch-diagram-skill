@@ -38,10 +38,10 @@
 **方式一：npm**（最简单）
 
 ```bash
-npx arch-diagram-skill install
+npx @rokoai/arch-diagram install
 ```
 
-会装到 `~/.claude/skills/arch-diagram`。加 `--project` 则装到当前项目的 `.claude/skills/`。更新时再跑一次；卸载用 `npx arch-diagram-skill uninstall`。
+会装到 `~/.claude/skills/arch-diagram`。加 `--project` 则装到当前项目的 `.claude/skills/`。更新时再跑一次；卸载用 `npx @rokoai/arch-diagram uninstall`。
 
 **方式二：Claude Code 插件**。在 Claude Code 里依次执行：
 
@@ -71,9 +71,9 @@ cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
 图的源文件是 `<slug>.spec.json`，要修改就让 Claude 改 spec，再重新生成。也可以用命令行直接操作：
 
 ```bash
-npx arch-diagram-skill build  my.spec.json my.html
-npx arch-diagram-skill check  my.html
-npx arch-diagram-skill export my.html my.png my.mp4 --seconds 30
+npx @rokoai/arch-diagram build  my.spec.json my.html
+npx @rokoai/arch-diagram check  my.html
+npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 ```
 
 ## 目录

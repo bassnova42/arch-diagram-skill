@@ -39,10 +39,10 @@ Node 18 이상과 Chrome, Chromium 또는 Edge가 필요합니다. 동영상과 
 **방법 1: npm** (가장 간단)
 
 ```bash
-npx arch-diagram-skill install
+npx @rokoai/arch-diagram install
 ```
 
-`~/.claude/skills/arch-diagram`에 설치됩니다. `--project`를 붙이면 현재 프로젝트의 `.claude/skills/`에 설치됩니다. 업데이트하려면 다시 실행하고, 삭제는 `npx arch-diagram-skill uninstall`입니다.
+`~/.claude/skills/arch-diagram`에 설치됩니다. `--project`를 붙이면 현재 프로젝트의 `.claude/skills/`에 설치됩니다. 업데이트하려면 다시 실행하고, 삭제는 `npx @rokoai/arch-diagram uninstall`입니다.
 
 **방법 2: Claude Code 플러그인**. Claude Code에서 다음을 실행합니다:
 
@@ -72,9 +72,9 @@ Claude Code에서 바로 요청하면 됩니다. 예:
 다이어그램의 원본은 `<slug>.spec.json`입니다. 수정하려면 Claude에게 spec을 고쳐서 다시 생성해 달라고 하면 됩니다. 명령줄에서 직접 다룰 수도 있습니다:
 
 ```bash
-npx arch-diagram-skill build  my.spec.json my.html
-npx arch-diagram-skill check  my.html
-npx arch-diagram-skill export my.html my.png my.mp4 --seconds 30
+npx @rokoai/arch-diagram build  my.spec.json my.html
+npx @rokoai/arch-diagram check  my.html
+npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 ```
 
 ## 디렉터리 구성

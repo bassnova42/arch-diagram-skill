@@ -39,10 +39,10 @@
 **วิธีที่ 1: npm** (ง่ายที่สุด)
 
 ```bash
-npx arch-diagram-skill install
+npx @rokoai/arch-diagram install
 ```
 
-จะติดตั้งไว้ที่ `~/.claude/skills/arch-diagram` ถ้าเติม `--project` จะติดตั้งใน `.claude/skills/` ของโปรเจกต์ปัจจุบัน รันอีกครั้งเพื่ออัปเดต และถอนการติดตั้งด้วย `npx arch-diagram-skill uninstall`
+จะติดตั้งไว้ที่ `~/.claude/skills/arch-diagram` ถ้าเติม `--project` จะติดตั้งใน `.claude/skills/` ของโปรเจกต์ปัจจุบัน รันอีกครั้งเพื่ออัปเดต และถอนการติดตั้งด้วย `npx @rokoai/arch-diagram uninstall`
 
 **วิธีที่ 2: ปลั๊กอิน Claude Code** รันใน Claude Code:
 
@@ -72,9 +72,9 @@ cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
 ต้นฉบับของแต่ละแผนภาพคือ `<slug>.spec.json` ถ้าต้องการแก้ ให้บอก Claude แก้ spec แล้วสร้างใหม่ หรือจะใช้บรรทัดคำสั่งโดยตรงก็ได้:
 
 ```bash
-npx arch-diagram-skill build  my.spec.json my.html
-npx arch-diagram-skill check  my.html
-npx arch-diagram-skill export my.html my.png my.mp4 --seconds 30
+npx @rokoai/arch-diagram build  my.spec.json my.html
+npx @rokoai/arch-diagram check  my.html
+npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 ```
 
 ## โครงสร้างไดเรกทอรี
