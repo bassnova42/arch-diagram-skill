@@ -69,7 +69,7 @@ Things of the same kind must share a color, even when they sit far apart. Use 3�
   - `log.live`: when there is no single real trace but the wires carry real exchanges, use a live trace. It streams one row per packet arrival and fills the bottom of videos; give key nodes a `short` name so rows stay compact
   - `footer`: when there is a real run command
   - status badges: when the source states a status
-- Accuracy: every node and edge must trace back to the source. Make inferred things `dashed` and mark them "推断" / "inferred". Labels follow the user's language; identifiers, paths and commands stay as they are.
+- Accuracy: every node and edge must trace back to the source. Make inferred things `dashed` and mark them "推断" / "inferred". **Language follows the prompt**: write every title, sub, line, label, log text, note and the page title in the language the user wrote the request in (English prompt → English diagram, Japanese → Japanese, and so on), even when the source is in another language, and set `lang` to that language. Identifiers, paths and commands stay as they are.
 
 ## 3. Lay out
 

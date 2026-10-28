@@ -13,11 +13,23 @@
   const SHORT = { bl: 'blue', cy: 'cyan', gr: 'green', am: 'amber', pu: 'purple', rd: 'red', or: 'orange' };
   const col = c => SHORT[c] || c || 'faint';
   const cssv = n => getComputedStyle(document.documentElement).getPropertyValue('--' + n).trim();
-  const ZH = /^zh/i.test(S.lang || 'zh-CN');
-  const LABEL = Object.assign(ZH
-    ? { ok: '运行正常', warn: '运行异常', dev: '开发中', off: '已关闭', none: '未创建', done: '已完成' }
-    : { ok: 'running', warn: 'degraded', dev: 'in progress', off: 'stopped', none: 'not built', done: 'done' },
-    S.statusLabels || {});
+  // UI words follow spec.lang (zh, en, ja, ko, es, th; anything else falls back to English)
+  const UI = {
+    zh: { elements: '元素：', flows: '流向：', status: '状态：', wires: '连线：── 同步 ╌╌ 异步', live: 'live trace · 模块之间的数据交换',
+      st: { ok: '运行正常', warn: '运行异常', dev: '开发中', off: '已关闭', none: '未创建', done: '已完成' } },
+    en: { elements: 'elements: ', flows: 'flows: ', status: 'status: ', wires: 'wires: ── sync ╌╌ async', live: 'live trace · data moving between modules',
+      st: { ok: 'running', warn: 'degraded', dev: 'in progress', off: 'stopped', none: 'not built', done: 'done' } },
+    ja: { elements: '要素：', flows: 'フロー：', status: '状態：', wires: '線：── 同期 ╌╌ 非同期', live: 'live trace · モジュール間のデータ交換',
+      st: { ok: '稼働中', warn: '異常あり', dev: '開発中', off: '停止中', none: '未作成', done: '完了' } },
+    ko: { elements: '요소: ', flows: '흐름: ', status: '상태: ', wires: '연결: ── 동기 ╌╌ 비동기', live: 'live trace · 모듈 간 데이터 교환',
+      st: { ok: '정상 동작', warn: '이상 발생', dev: '개발 중', off: '중지됨', none: '미생성', done: '완료' } },
+    es: { elements: 'elementos: ', flows: 'flujos: ', status: 'estado: ', wires: 'líneas: ── síncrono ╌╌ asíncrono', live: 'live trace · datos entre módulos',
+      st: { ok: 'en marcha', warn: 'con fallos', dev: 'en desarrollo', off: 'detenido', none: 'sin crear', done: 'hecho' } },
+    th: { elements: 'องค์ประกอบ: ', flows: 'การไหล: ', status: 'สถานะ: ', wires: 'เส้น: ── ซิงก์ ╌╌ อะซิงก์', live: 'live trace · ข้อมูลที่ไหลระหว่างโมดูล',
+      st: { ok: 'ทำงานปกติ', warn: 'ผิดปกติ', dev: 'กำลังพัฒนา', off: 'หยุดแล้ว', none: 'ยังไม่สร้าง', done: 'เสร็จแล้ว' } },
+  };
+  const T = UI[String(S.lang || 'zh-CN').slice(0, 2).toLowerCase()] || UI.en;
+  const LABEL = Object.assign({}, T.st, S.statusLabels || {});
   const issues = [], warnings = [];
 
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -64,18 +76,18 @@
     d.style.marginTop = '6px';
   };
   if (S.layers && S.layers.length) {
-    lgLine(hasFlows ? (ZH ? '元素：' : 'elements: ') : '', S.layers.map(l =>
+    lgLine(hasFlows ? T.elements : '', S.layers.map(l =>
       `<span class="lg"><span class="sq" style="background:var(--${col(l.color)})"></span>${fmt(l.label)}</span>`).join(''));
   }
   if (hasFlows) {
-    lgLine(ZH ? '流向：' : 'flows: ', S.flows.map(f =>
+    lgLine(T.flows, S.flows.map(f =>
       `<span class="lg"><svg width="28" height="8" style="vertical-align:1px;margin-right:6px"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--${col(f.color)})" stroke-width="1.6"${f.dash ? ' stroke-dasharray="5 4"' : ''}/></svg>${fmt(f.label)}</span>`).join(''));
   }
   const used = ['ok', 'warn', 'dev', 'off', 'none', 'done'].filter(s => (S.nodes || []).some(n => n.status === s));
   const lineLg = [];
-  if (used.length) lineLg.push(`<span class="dim">${ZH ? '状态：' : 'status: '}</span>` +
+  if (used.length) lineLg.push(`<span class="dim">${T.status}</span>` +
     used.map(s => `<span class="st stl ${s}">${esc(LABEL[s])}</span>`).join(''));
-  if (!hasFlows && S.wireLegend !== false) lineLg.push(`<span class="dim">${ZH ? '连线：── 同步 ╌╌ 异步' : 'wires: ── sync ╌╌ async'}</span>`);
+  if (!hasFlows && S.wireLegend !== false) lineLg.push(`<span class="dim">${T.wires}</span>`);
   if (lineLg.length) lgLine('', lineLg.join('&nbsp;&nbsp;&nbsp;'));
 
   // ---------- groups (drawn first, underneath) ----------
@@ -180,7 +192,7 @@
     lg.style.left = '16px'; lg.style.right = '16px';
     lg.style.top = (S.log.y != null ? S.log.y : bottomOf() + 44) + 'px';
     const live = S.log.live;
-    const title = S.log.title || (live ? (ZH ? 'live trace · 模块之间的数据交换' : 'live trace · data moving between modules') : 'session log');
+    const title = S.log.title || (live ? T.live : 'session log');
     el('div', 'legend', '─┤ ' + fmt(title) + (live ? ' <span class="livedot">●</span> <span class="gr">live</span>' : ''), lg);
     const cols = S.log.cols || (live ? '96px 64px 380px 1fr' : '80px 90px 300px 1fr');
     if (live) {

@@ -117,3 +117,8 @@ svg#wires { position: absolute; left: 0; top: 0; overflow: visible; pointer-even
 .loop .cursor { animation-duration: 1s; }
 .loop .st.ok::before { animation-duration: 2s; }
 .check .box { transition: none; }
+
+/* per-language CJK / Thai fonts (html lang comes from spec.lang) */
+html:lang(ja) body, html:lang(ja) .lbl { font-family: "JetBrains Mono", "SF Mono", Menlo, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", monospace; }
+html:lang(ko) body, html:lang(ko) .lbl { font-family: "JetBrains Mono", "SF Mono", Menlo, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", monospace; }
+html:lang(th) body, html:lang(th) .lbl { font-family: "JetBrains Mono", "SF Mono", Menlo, Thonburi, "Leelawadee UI", "Noto Sans Thai", monospace; }

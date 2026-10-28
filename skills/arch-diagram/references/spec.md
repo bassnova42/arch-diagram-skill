@@ -6,7 +6,7 @@ One JSON file describes the whole diagram. `scripts/build.mjs` turns it into a s
 
 | key | meaning |
 |---|---|
-| `lang` | `"zh-CN"` (default) or `"en"`. Sets the default status labels and legend text |
+| `lang` | BCP-47 tag of the user's language: `"zh-CN"` (default), `"en"`, `"ja"`, `"ko"`, `"es"`, `"th"`. Sets the page language, the fonts, the default status labels, legend words and live-log title. Other languages fall back to English UI words, so then also set `statusLabels` and `log.title` in that language |
 | `pageTitle` | browser tab title. Defaults to `title` with the markup removed |
 | `title` | bold header line. Supports markup |
 | `subtitle` | optional dim line under the title |
