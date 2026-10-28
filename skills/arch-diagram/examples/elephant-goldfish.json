@@ -1,0 +1,534 @@
+{
+ "lang": "zh-CN",
+ "pageTitle": "Elephant-Goldfish 模型",
+ "title": "ELEPHANT-GOLDFISH MODEL  ·  Feed the {cy:Elephant}; test it against the {gr:Goldfish}",
+ "subtitle": "来源：Dave Rensin, Elephants, Goldfish, and the New Golden Age of Software Engineering · 四阶段流程 + 反馈循环 · 设计文档居中",
+ "layers": [
+  {
+   "id": "human",
+   "label": "人 · 判断力",
+   "color": "blue"
+  },
+  {
+   "id": "eleph",
+   "label": "Elephant · 有记忆的长会话",
+   "color": "cyan"
+  },
+  {
+   "id": "fish",
+   "label": "Goldfish · 零记忆新会话",
+   "color": "green"
+  },
+  {
+   "id": "art",
+   "label": "产物 · 文档 / 代码",
+   "color": "amber"
+  },
+  {
+   "id": "gen",
+   "label": "通用版",
+   "color": "purple"
+  }
+ ],
+ "flows": [
+  {
+   "id": "seq",
+   "label": "步骤顺序",
+   "color": "text"
+  },
+  {
+   "id": "write",
+   "label": "写入产物",
+   "color": "amber"
+  },
+  {
+   "id": "read",
+   "label": "只凭产物读入",
+   "color": "amber",
+   "dash": true
+  },
+  {
+   "id": "loop",
+   "label": "发现缺口 → 写回",
+   "color": "red",
+   "dash": true
+  },
+  {
+   "id": "feed",
+   "label": "上下文投喂",
+   "color": "purple",
+   "dash": true
+  }
+ ],
+ "notes": [
+  {
+   "x": 16,
+   "y": 150,
+   "w": 236,
+   "text": "{b:PHASE 1} · 养大象 · 不写代码",
+   "dim": true
+  },
+  {
+   "x": 282,
+   "y": 150,
+   "w": 236,
+   "text": "{b:PHASE 2} · 教大象 · 写文档",
+   "dim": true
+  },
+  {
+   "x": 548,
+   "y": 150,
+   "w": 236,
+   "text": "{b:PHASE 3} · 金鱼协议",
+   "dim": true
+  },
+  {
+   "x": 814,
+   "y": 150,
+   "w": 236,
+   "text": "{b:PHASE 4} · 实现",
+   "dim": true
+  },
+  {
+   "x": 16,
+   "y": 1046,
+   "w": 1034,
+   "dim": true,
+   "text": "◆ 判断力不外包：模型目前不具备判断力    ◆ 只保存三件产物：问题描述 · 验收标准 · 产出（对话本身多是 token 噪声）"
+  }
+ ],
+ "groups": [
+  {
+   "id": "g-eleph",
+   "label": "Elephant · 同一个长会话（可持续 2–3 天）",
+   "labelRight": true,
+   "color": "cyan",
+   "solid": true,
+   "x": 16,
+   "y": 290,
+   "w": 502,
+   "h": 382
+  },
+  {
+   "id": "g-fish",
+   "label": "每一个都是全新会话",
+   "color": "green",
+   "x": 540,
+   "y": 184,
+   "w": 252,
+   "h": 330,
+   "short": "金鱼会话"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "you",
+   "layer": "human",
+   "x": 48,
+   "y": 190,
+   "w": 188,
+   "h": 70,
+   "title": "你 · 工程师",
+   "lines": "提供意图与判断"
+  },
+  {
+   "id": "s1",
+   "layer": "eleph",
+   "x": 48,
+   "y": 316,
+   "w": 188,
+   "h": 66,
+   "title": "① 上下文加载",
+   "lines": "让它复述 · 立刻纠正"
+  },
+  {
+   "id": "s2",
+   "layer": "eleph",
+   "x": 48,
+   "y": 406,
+   "w": 188,
+   "h": 66,
+   "title": "② No Code 规则",
+   "lines": "被追问 20–30 分钟"
+  },
+  {
+   "id": "s3",
+   "layer": "eleph",
+   "x": 48,
+   "y": 496,
+   "w": 188,
+   "h": 66,
+   "title": "③ 反谄媚",
+   "lines": "“Why?” 拉回批判"
+  },
+  {
+   "id": "s4",
+   "layer": "eleph",
+   "x": 48,
+   "y": 586,
+   "w": 188,
+   "h": 66,
+   "title": "④ AI 先出方案",
+   "lines": "争论可达 2–3 天"
+  },
+  {
+   "id": "mem",
+   "layer": "eleph",
+   "dashed": true,
+   "x": 314,
+   "y": 316,
+   "w": 188,
+   "h": 156,
+   "title": "大象记住的",
+   "sub": "上下文就是资产",
+   "lines": [
+    "机构知识",
+    "每个微观决策",
+    "和模型的争论",
+    "功能的完整历史"
+   ]
+  },
+  {
+   "id": "p2",
+   "layer": "eleph",
+   "x": 314,
+   "y": 586,
+   "w": 188,
+   "h": 66,
+   "title": "逐节写文档",
+   "lines": "一次一节 · 不一次生成"
+  },
+  {
+   "id": "gf1",
+   "layer": "fish",
+   "x": 556,
+   "y": 204,
+   "w": 220,
+   "h": 80,
+   "title": "① 理解测试",
+   "sub": "Step 5",
+   "lines": "讲得清系统才算过"
+  },
+  {
+   "id": "gf2",
+   "layer": "fish",
+   "x": 556,
+   "y": 310,
+   "w": 220,
+   "h": 80,
+   "title": "② 挑刺评审",
+   "sub": "Step 6",
+   "lines": "约 30% 建议很有价值"
+  },
+  {
+   "id": "gf3",
+   "layer": "fish",
+   "x": 556,
+   "y": 416,
+   "w": 220,
+   "h": 80,
+   "title": "③ 就绪检查",
+   "sub": "Step 7",
+   "lines": "够不够一次写对？"
+  },
+  {
+   "id": "human",
+   "layer": "human",
+   "x": 556,
+   "y": 586,
+   "w": 220,
+   "h": 66,
+   "title": "人类评审",
+   "lines": "批准后才写代码"
+  },
+  {
+   "id": "review",
+   "layer": "fish",
+   "x": 830,
+   "y": 204,
+   "w": 204,
+   "h": 80,
+   "title": "刻薄代码审查",
+   "sub": "Step 9",
+   "lines": "“tear it to shreds”"
+  },
+  {
+   "id": "code",
+   "layer": "art",
+   "x": 830,
+   "y": 416,
+   "w": 204,
+   "h": 80,
+   "title": "代码",
+   "sub": "AI 生成",
+   "lines": "终将不透明"
+  },
+  {
+   "id": "impl",
+   "layer": "fish",
+   "x": 830,
+   "y": 586,
+   "w": 204,
+   "h": 66,
+   "title": "实现会话",
+   "lines": "严格照文档实现"
+  },
+  {
+   "id": "readme",
+   "layer": "art",
+   "dashed": true,
+   "x": 16,
+   "y": 724,
+   "w": 236,
+   "h": 110,
+   "title": "README 层级",
+   "sub": "只有老代码库需要",
+   "lines": [
+    "从叶子目录逐级汇总",
+    "AI 约 50% 错 · 人工修"
+   ]
+  },
+  {
+   "id": "doc",
+   "layer": "art",
+   "x": 282,
+   "y": 724,
+   "w": 768,
+   "h": 110,
+   "title": "design-doc.md · {am:唯一事实来源} · 存进代码树",
+   "pipeline": [
+    "The Problem",
+    "Technical Plan",
+    "Alternatives",
+    "Detailed Implementation"
+   ],
+   "lines": "Design is the new code  ·  sizeof(docs) ≪ sizeof(code)"
+  },
+  {
+   "id": "nb",
+   "layer": "art",
+   "x": 282,
+   "y": 900,
+   "w": 236,
+   "h": 96,
+   "title": "NotebookLM 笔记本",
+   "lines": [
+    "README + 设计文档",
+    "给新人学系统用"
+   ]
+  },
+  {
+   "id": "pm",
+   "layer": "human",
+   "x": 548,
+   "y": 900,
+   "w": 236,
+   "h": 96,
+   "title": "PM / 新成员",
+   "lines": [
+    "先写一篇设计文档",
+    "约 70–80% 对，再改 1–2 轮"
+   ]
+  },
+  {
+   "id": "part1",
+   "layer": "gen",
+   "x": 814,
+   "y": 900,
+   "w": 236,
+   "h": 116,
+   "title": "Part 1 · 买车也适用",
+   "sub": "同一方法的通用版",
+   "lines": [
+    "① AI 追问你 15–20 分钟",
+    "② 核查员定验收标准",
+    "③ 新会话 deep research"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "flow": "seq",
+   "from": "you.b",
+   "to": "s1.t",
+   "label": "描述功能",
+   "labelSide": "right"
+  },
+  {
+   "flow": "seq",
+   "from": "s1.b",
+   "to": "s2.t",
+   "log": "上下文就位 → 立规矩"
+  },
+  {
+   "flow": "seq",
+   "from": "s2.b",
+   "to": "s3.t",
+   "log": "只讨论，不写代码"
+  },
+  {
+   "flow": "seq",
+   "from": "s3.b",
+   "to": "s4.t",
+   "log": "不附和，直说问题"
+  },
+  {
+   "flow": "seq",
+   "from": "s4.r",
+   "to": "p2.l",
+   "label": "方案定了"
+  },
+  {
+   "flow": "write",
+   "from": "p2.b",
+   "to": "doc.t@126px",
+   "label": "4 个部分",
+   "labelSide": "right"
+  },
+  {
+   "flow": "read",
+   "from": "doc.t@251px",
+   "to": "gf1.l",
+   "joint": true,
+   "log": "只给文档"
+  },
+  {
+   "flow": "read",
+   "from": "doc.t@251px",
+   "to": "gf2.l",
+   "joint": true,
+   "log": "只给文档"
+  },
+  {
+   "flow": "read",
+   "from": "doc.t@251px",
+   "to": "gf3.l",
+   "joint": true,
+   "label": "只给文档，不给对话",
+   "labelPos": [
+    541,
+    702
+   ],
+   "labelColor": "amber"
+  },
+  {
+   "flow": "seq",
+   "from": "gf1.b",
+   "to": "gf2.t",
+   "log": "能讲清楚才过关"
+  },
+  {
+   "flow": "seq",
+   "from": "gf2.b",
+   "to": "gf3.t",
+   "log": "挑完刺 → 查就绪"
+  },
+  {
+   "flow": "seq",
+   "from": "gf3.b",
+   "to": "human.t",
+   "label": "三关都过",
+   "labelSide": "right"
+  },
+  {
+   "flow": "loop",
+   "from": "g-fish.r",
+   "to": "doc.t@517px",
+   "label": "补缺口 · 到只剩 nit",
+   "labelPos": [
+    792,
+    702
+   ],
+   "labelAnchor": "end",
+   "labelColor": "red"
+  },
+  {
+   "flow": "seq",
+   "from": "human.r",
+   "to": "impl.l",
+   "log": "批准开工"
+  },
+  {
+   "flow": "read",
+   "from": "doc.t@650px",
+   "to": "impl.b",
+   "label": "崩了就新会话重读",
+   "labelPos": [
+    940,
+    690
+   ],
+   "labelColor": "amber"
+  },
+  {
+   "flow": "write",
+   "from": "impl.t",
+   "to": "code.b",
+   "label": "生成",
+   "labelSide": "right"
+  },
+  {
+   "flow": "seq",
+   "from": "code.t",
+   "to": "review.b",
+   "label": "交回审查",
+   "labelSide": "right"
+  },
+  {
+   "flow": "loop",
+   "from": "review.r",
+   "to": "impl.r",
+   "rail": "x:1062",
+   "label": "改到只剩琐碎",
+   "labelPos": [
+    1056,
+    306
+   ],
+   "labelAnchor": "end",
+   "labelColor": "red"
+  },
+  {
+   "flow": "feed",
+   "from": "readme.t@14px",
+   "to": "s1.l",
+   "label": "只喂 README",
+   "labelPos": [
+    38,
+    706
+   ],
+   "labelColor": "purple"
+  },
+  {
+   "flow": "feed",
+   "from": "readme.b",
+   "to": "nb.l",
+   "label": "灌入",
+   "labelSide": "above"
+  },
+  {
+   "flow": "feed",
+   "from": "doc.b@118px",
+   "to": "nb.t",
+   "label": "灌入",
+   "labelSide": "right"
+  },
+  {
+   "flow": "feed",
+   "from": "nb.r",
+   "to": "pm.l",
+   "log": "按需提问"
+  },
+  {
+   "flow": "write",
+   "from": "pm.t",
+   "to": "doc.b@384px",
+   "label": "写文档",
+   "labelSide": "right"
+  }
+ ],
+ "log": {
+  "title": "live trace · 文档在会话之间流转",
+  "live": {
+   "rows": 7
+  }
+ }
+}

@@ -1,0 +1,504 @@
+{
+ "lang": "zh-CN",
+ "width": 1180,
+ "pageTitle": "Plausible 架构图",
+ "title": "PLAUSIBLE ANALYTICS  ·  两条流水线：{gr:写入} 每个 pageview  ·  {bl:读取} 每次看仪表盘  ·  汇合于 {am:ClickHouse}",
+ "subtitle": "来源：github.com/plausible/analytics 源码 · Elixir / Phoenix 单体 · 结构：双流水线 + 共享存储",
+ "layers": [
+  {
+   "id": "caller",
+   "label": "调用方",
+   "color": "blue"
+  },
+  {
+   "id": "web",
+   "label": "Phoenix 请求处理",
+   "color": "cyan"
+  },
+  {
+   "id": "mem",
+   "label": "进程内状态 · ETS / 缓存 / 缓冲",
+   "color": "green"
+  },
+  {
+   "id": "store",
+   "label": "数据库",
+   "color": "amber"
+  },
+  {
+   "id": "job",
+   "label": "后台任务",
+   "color": "text"
+  },
+  {
+   "id": "ext",
+   "label": "外部服务",
+   "color": "purple"
+  }
+ ],
+ "flows": [
+  {
+   "id": "write",
+   "label": "事件写入",
+   "color": "green"
+  },
+  {
+   "id": "read",
+   "label": "查询读取",
+   "color": "blue"
+  },
+  {
+   "id": "cfg",
+   "label": "配置 / 缓存预热",
+   "color": "amber",
+   "dash": true
+  },
+  {
+   "id": "job",
+   "label": "后台任务",
+   "color": "text",
+   "dash": true
+  },
+  {
+   "id": "ext",
+   "label": "外部服务",
+   "color": "purple",
+   "dash": true
+  }
+ ],
+ "groups": [
+  {
+   "id": "g-write",
+   "label": "写入路径 · 每个 pageview · 只追加",
+   "color": "green",
+   "x": 8,
+   "y": 256,
+   "w": 1164,
+   "h": 182
+  },
+  {
+   "id": "g-read",
+   "label": "读取路径 · 每次打开仪表盘 / 调 API",
+   "color": "blue",
+   "x": 8,
+   "y": 672,
+   "w": 1164,
+   "h": 186
+  },
+  {
+   "id": "g-bg",
+   "label": "后台 · Oban 任务 · 队列存在 Postgres",
+   "color": "text",
+   "x": 8,
+   "y": 900,
+   "w": 1164,
+   "h": 172
+  }
+ ],
+ "nodes": [
+  {
+   "id": "mm",
+   "layer": "ext",
+   "dashed": true,
+   "x": 599,
+   "y": 160,
+   "w": 220,
+   "h": 64,
+   "title": "MaxMind GeoLite2",
+   "lines": "本地库 · :locus 加载"
+  },
+  {
+   "id": "tracker",
+   "layer": "caller",
+   "x": 16,
+   "y": 276,
+   "w": 196,
+   "h": 150,
+   "title": "tracker 脚本",
+   "sub": "tracker/src",
+   "lines": [
+    "不写 cookie",
+    "fetch keepalive",
+    "兼容版用 XHR"
+   ]
+  },
+  {
+   "id": "ext-ctrl",
+   "layer": "web",
+   "x": 254,
+   "y": 276,
+   "w": 196,
+   "h": 150,
+   "title": "ExternalController",
+   "sub": "POST /api/event",
+   "lines": [
+    "Request.build",
+    "立即回 202"
+   ]
+  },
+  {
+   "id": "pipe",
+   "layer": "web",
+   "x": 492,
+   "y": 276,
+   "w": 434,
+   "h": 150,
+   "title": "Ingestion.Event 流水线",
+   "sub": "18 步 · 任一步都可丢弃事件",
+   "pipeline": [
+    "~GateKeeper",
+    "~Shields 拦截",
+    "geolocation",
+    "user_agent",
+    "source · UTM",
+    "salts → user_id",
+    "register_session"
+   ]
+  },
+  {
+   "id": "wb",
+   "layer": "mem",
+   "x": 968,
+   "y": 276,
+   "w": 196,
+   "h": 150,
+   "title": "WriteBuffer",
+   "sub": "Event + Session",
+   "lines": [
+    "攒批写入",
+    "5s 或缓冲满即刷"
+   ]
+  },
+  {
+   "id": "pg",
+   "layer": "store",
+   "x": 254,
+   "y": 480,
+   "w": 196,
+   "h": 140,
+   "title": "PostgreSQL",
+   "sub": "Plausible.Repo",
+   "lines": [
+    "sites · users · goals",
+    "salts · oban_jobs",
+    "设置页 LiveView 读写"
+   ]
+  },
+  {
+   "id": "cache",
+   "layer": "mem",
+   "x": 502,
+   "y": 480,
+   "w": 196,
+   "h": 140,
+   "title": "Site / Shield 缓存",
+   "sub": "预热自 Postgres",
+   "lines": [
+    "每 25–35s 增量刷新",
+    "站点 · IP / 国家",
+    "页面 / 主机名规则"
+   ]
+  },
+  {
+   "id": "sess",
+   "layer": "mem",
+   "x": 720,
+   "y": 480,
+   "w": 196,
+   "h": 140,
+   "title": "会话与盐",
+   "sub": "Session.CacheStore",
+   "lines": [
+    "同访客事件并入会话",
+    "Salts 存 ETS",
+    "当前 + 上一个盐"
+   ]
+  },
+  {
+   "id": "ch",
+   "layer": "store",
+   "x": 968,
+   "y": 470,
+   "w": 196,
+   "h": 160,
+   "title": "ClickHouse",
+   "sub": "IngestRepo 写 · ClickhouseRepo 读",
+   "lines": [
+    "events_v2",
+    "sessions_v2",
+    "imported_*（GA 导入）"
+   ]
+  },
+  {
+   "id": "dash",
+   "layer": "caller",
+   "x": 16,
+   "y": 692,
+   "w": 196,
+   "h": 70,
+   "title": "仪表盘",
+   "lines": "React · assets/js"
+  },
+  {
+   "id": "apic",
+   "layer": "caller",
+   "x": 16,
+   "y": 778,
+   "w": 196,
+   "h": 64,
+   "title": "API 调用方",
+   "lines": "Bearer Token"
+  },
+  {
+   "id": "stats-ctrl",
+   "layer": "web",
+   "x": 254,
+   "y": 692,
+   "w": 196,
+   "h": 150,
+   "title": "Stats API",
+   "sub": "StatsController",
+   "lines": [
+    "/api/stats/",
+    ":domain/query",
+    "/api/v2/query"
+   ]
+  },
+  {
+   "id": "qpipe",
+   "layer": "web",
+   "x": 492,
+   "y": 692,
+   "w": 434,
+   "h": 150,
+   "title": "Stats 查询构建",
+   "sub": "lib/plausible/stats",
+   "pipeline": [
+    "解析 Query",
+    "QueryOptimizer",
+    "QueryBuilder → SQL",
+    "~合并 imported_*"
+   ]
+  },
+  {
+   "id": "qr",
+   "layer": "web",
+   "x": 968,
+   "y": 692,
+   "w": 196,
+   "h": 150,
+   "title": "QueryRunner",
+   "sub": "ClickhouseRepo",
+   "lines": [
+    "执行 SQL",
+    "主查询 + 对比期",
+    "结果 → JSON"
+   ]
+  },
+  {
+   "id": "gsc",
+   "layer": "ext",
+   "x": 254,
+   "y": 924,
+   "w": 196,
+   "h": 84,
+   "title": "Google Search Console",
+   "lines": "搜索关键词"
+  },
+  {
+   "id": "oban",
+   "layer": "job",
+   "x": 492,
+   "y": 924,
+   "w": 434,
+   "h": 136,
+   "title": "Oban workers",
+   "sub": "lib/workers",
+   "rows": [
+    {
+     "id": "j-salt",
+     "name": "rotate_salts",
+     "desc": "每日换盐 · 写 salts 表"
+    },
+    {
+     "id": "j-mail",
+     "name": "send_email_report",
+     "desc": "周报 · 流量突变通知"
+    },
+    {
+     "id": "j-io",
+     "name": "export / import_analytics",
+     "desc": "CSV 导出 · GA 导入"
+    }
+   ]
+  },
+  {
+   "id": "mail",
+   "layer": "ext",
+   "x": 968,
+   "y": 924,
+   "w": 196,
+   "h": 60,
+   "title": "Postmark / SMTP",
+   "lines": "Bamboo 发信"
+  },
+  {
+   "id": "s3",
+   "layer": "ext",
+   "dashed": true,
+   "x": 968,
+   "y": 1000,
+   "w": 196,
+   "h": 60,
+   "title": "S3 兼容存储",
+   "lines": "默认关闭"
+  }
+ ],
+ "edges": [
+  {
+   "flow": "write",
+   "from": "tracker.r",
+   "to": "ext-ctrl.l",
+   "label": "POST"
+  },
+  {
+   "flow": "write",
+   "from": "ext-ctrl.r",
+   "to": "pipe.l"
+  },
+  {
+   "flow": "write",
+   "from": "pipe.r",
+   "to": "wb.l",
+   "label": "事件"
+  },
+  {
+   "flow": "write",
+   "from": "wb.b",
+   "to": "ch.t",
+   "label": "批量 INSERT",
+   "labelSide": "left"
+  },
+  {
+   "flow": "ext",
+   "from": "mm.b",
+   "to": "pipe.t@217px",
+   "label": "IP → 国家 / 城市",
+   "labelPos": [
+    717,
+    246
+   ]
+  },
+  {
+   "flow": "cfg",
+   "from": "pg.r",
+   "to": "cache.l",
+   "straight": true,
+   "label": "预热"
+  },
+  {
+   "flow": "cfg",
+   "from": "cache.t",
+   "to": "pipe.b@108px",
+   "label": "查规则",
+   "labelSide": "right"
+  },
+  {
+   "flow": "cfg",
+   "from": "sess.t",
+   "to": "pipe.b@326px",
+   "arrow": "both",
+   "label": "读写会话",
+   "labelSide": "right"
+  },
+  {
+   "flow": "cfg",
+   "from": "pg.b",
+   "to": "sess.b",
+   "rail": "y:648",
+   "label": "salts 表 → ETS",
+   "labelSeg": 2,
+   "labelSide": "above"
+  },
+  {
+   "flow": "read",
+   "from": "dash.r",
+   "to": "stats-ctrl.l",
+   "straight": true,
+   "label": "POST"
+  },
+  {
+   "flow": "read",
+   "from": "apic.r",
+   "to": "stats-ctrl.l",
+   "straight": true
+  },
+  {
+   "flow": "read",
+   "from": "stats-ctrl.r",
+   "to": "qpipe.l"
+  },
+  {
+   "flow": "read",
+   "from": "qpipe.r",
+   "to": "qr.l",
+   "label": "SQL"
+  },
+  {
+   "flow": "read",
+   "from": "qr.t",
+   "to": "ch.b",
+   "arrow": "both",
+   "label": "SELECT",
+   "labelPos": [
+    1058,
+    662
+   ],
+   "labelAnchor": "end"
+  },
+  {
+   "flow": "ext",
+   "from": "stats-ctrl.b",
+   "to": "gsc.t",
+   "label": "搜索词",
+   "labelSide": "right"
+  },
+  {
+   "flow": "job",
+   "from": "j-salt.l",
+   "to": "pg.r@-18px",
+   "rail": "x:471",
+   "label": "换盐",
+   "labelPos": [
+    478,
+    886
+   ]
+  },
+  {
+   "flow": "ext",
+   "from": "j-mail.r",
+   "to": "mail.l",
+   "straight": true
+  },
+  {
+   "flow": "ext",
+   "from": "j-io.r",
+   "to": "s3.l",
+   "straight": true
+  }
+ ],
+ "notes": [
+  {
+   "x": 16,
+   "y": 1090,
+   "w": 1148,
+   "dim": true,
+   "text": "写入路径不碰 Postgres：规则、站点、盐都提前搬进内存，事件攒批后一次性写进 ClickHouse · 读取路径只查 ClickHouse，Postgres 只管配置和任务队列"
+  }
+ ],
+ "footer": {
+  "cwd": "~/plausible",
+  "cmd": "make postgres clickhouse && make install && make server",
+  "note": "开发启动见 CONTRIBUTING.md · 自托管走 plausible/community-edition"
+ }
+}

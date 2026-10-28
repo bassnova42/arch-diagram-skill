@@ -1,0 +1,538 @@
+{
+ "lang": "zh-CN",
+ "width": 1180,
+ "pageTitle": "REA 架构图",
+ "title": "REA · Reverse Engineer Anything  ·  一个 {cy:MCP} 接几十种逆向工具  ·  结论都带 {am:证据}",
+ "subtitle": "来源：github.com/morluto/rea（README + docs/architecture.mermaid + 源码目录） · 结构：请求路径 + 中心编排 + 工具辐射 + 共用基础层",
+ "layers": [
+  {
+   "id": "caller",
+   "label": "调用方",
+   "color": "blue"
+  },
+  {
+   "id": "entry",
+   "label": "入口 · 协议适配",
+   "color": "cyan"
+  },
+  {
+   "id": "core",
+   "label": "核心编排",
+   "color": "green"
+  },
+  {
+   "id": "evid",
+   "label": "证据",
+   "color": "amber"
+  },
+  {
+   "id": "ext",
+   "label": "REA 驱动的外部程序",
+   "color": "purple"
+  },
+  {
+   "id": "inproc",
+   "label": "进程内读取器",
+   "color": "text"
+  },
+  {
+   "id": "base",
+   "label": "共用基础层",
+   "color": "dim"
+  }
+ ],
+ "flows": [
+  {
+   "id": "call",
+   "label": "调用（双箭头 = 带回结果）",
+   "color": "text"
+  },
+  {
+   "id": "result",
+   "label": "证据回传",
+   "color": "amber"
+  },
+  {
+   "id": "record",
+   "label": "写证据记录",
+   "color": "amber",
+   "dash": true
+  },
+  {
+   "id": "proc",
+   "label": "拉起受管子进程",
+   "color": "purple",
+   "dash": true
+  },
+  {
+   "id": "dep",
+   "label": "依赖纯模块",
+   "color": "dim",
+   "dash": true
+  }
+ ],
+ "groups": [
+  {
+   "id": "g-core",
+   "label": "核心编排 · src/application/ · CLI 和 MCP 共用同一套",
+   "color": "green",
+   "solid": true,
+   "x": 8,
+   "y": 404,
+   "w": 1164,
+   "h": 148
+  },
+  {
+   "id": "g-base",
+   "label": "共用基础层",
+   "color": "dim",
+   "x": 8,
+   "y": 872,
+   "w": 1164,
+   "h": 124
+  }
+ ],
+ "nodes": [
+  {
+   "id": "agent",
+   "layer": "caller",
+   "x": 16,
+   "y": 170,
+   "w": 266,
+   "h": 96,
+   "title": "你的 Agent",
+   "sub": "Claude Code · Codex · Cursor…",
+   "lines": "提问 → 解释 · 实现 · 测试"
+  },
+  {
+   "id": "term",
+   "layer": "caller",
+   "x": 16,
+   "y": 286,
+   "w": 266,
+   "h": 70,
+   "title": "终端",
+   "lines": "rea <命令> --json"
+  },
+  {
+   "id": "disp",
+   "layer": "entry",
+   "x": 312,
+   "y": 170,
+   "w": 266,
+   "h": 96,
+   "title": "scripts/rea.mjs",
+   "sub": "可执行入口 · 分发",
+   "lines": "mcp → 服务器 · 其余 → CLI"
+  },
+  {
+   "id": "cli",
+   "layer": "entry",
+   "x": 312,
+   "y": 286,
+   "w": 266,
+   "h": 70,
+   "title": "CLI · src/cli.ts",
+   "lines": "setup · 诊断 · 分析 · 反编译"
+  },
+  {
+   "id": "mcp",
+   "layer": "entry",
+   "x": 608,
+   "y": 170,
+   "w": 266,
+   "h": 96,
+   "title": "MCP 服务器",
+   "sub": "src/main.ts · src/server/",
+   "lines": "默认 stdio · 可选 HTTP"
+  },
+  {
+   "id": "out",
+   "layer": "evid",
+   "x": 904,
+   "y": 170,
+   "w": 266,
+   "h": 186,
+   "title": "返回给 Agent",
+   "sub": "结论 + 证据 + 未知项",
+   "lines": [
+    "伪代码 · 汇编 · 字符串",
+    "符号 · 调用 · 交叉引用",
+    "模块 · IPC · 网络请求",
+    "不确定的单列为 Unknown"
+   ]
+  },
+  {
+   "id": "comp",
+   "layer": "core",
+   "x": 16,
+   "y": 426,
+   "w": 266,
+   "h": 110,
+   "title": "Composition",
+   "sub": "src/composition/",
+   "lines": [
+    "按需创建提供方与会话",
+    "可选依赖各自独立加载"
+   ]
+  },
+  {
+   "id": "sess",
+   "layer": "core",
+   "x": 312,
+   "y": 426,
+   "w": 266,
+   "h": 110,
+   "title": "会话路由 + 注册表",
+   "sub": "SessionProviderRouter",
+   "lines": [
+    "每个目标绑定一个深度提供方",
+    "确定性选择 · 选不中不降级"
+   ]
+  },
+  {
+   "id": "app",
+   "layer": "core",
+   "x": 608,
+   "y": 426,
+   "w": 266,
+   "h": 110,
+   "title": "调查工作流",
+   "sub": "src/application/",
+   "lines": [
+    "增强分析 · 多步调查",
+    "CLI 与 MCP 共用"
+   ]
+  },
+  {
+   "id": "ev",
+   "layer": "evid",
+   "x": 904,
+   "y": 426,
+   "w": 266,
+   "h": 110,
+   "title": "证据记录",
+   "sub": "investigation/",
+   "lines": [
+    "EvidenceLedger · Unknown",
+    "快照缓存 · 会话文件"
+   ]
+  },
+  {
+   "id": "byo",
+   "layer": "ext",
+   "x": 16,
+   "y": 606,
+   "w": 266,
+   "h": 214,
+   "title": "外部命令行工具",
+   "sub": "自带安装 · REA 只负责调用",
+   "rows": [
+    {
+     "name": "objdump · Rizin · GDB",
+     "desc": "反汇编"
+    },
+    {
+     "name": "Binwalk · Unblob",
+     "desc": "固件"
+    },
+    {
+     "name": "JADX · adb · Apktool",
+     "desc": "安卓"
+    },
+    {
+     "name": "tshark · sigrok",
+     "desc": "抓包"
+    },
+    {
+     "name": "WABT · pwntools",
+     "desc": "WASM"
+    }
+   ]
+  },
+  {
+   "id": "deep",
+   "layer": "ext",
+   "x": 312,
+   "y": 606,
+   "w": 266,
+   "h": 214,
+   "title": "深度反编译器",
+   "sub": "原生二进制 · 每个目标选一个",
+   "rows": [
+    {
+     "name": "Hopper",
+     "desc": "Python 桥 · Unix socket"
+    },
+    {
+     "name": "Ghidra",
+     "desc": "Headless Java 脚本"
+    },
+    {
+     "name": "IDA",
+     "desc": "经 ida-pro-mcp"
+    },
+    {
+     "name": "Kuna",
+     "desc": "自带安装"
+    }
+   ],
+   "footer": "{dim:伪代码 · 汇编 · 引用 · CFG}"
+  },
+  {
+   "id": "inproc",
+   "layer": "inproc",
+   "x": 608,
+   "y": 606,
+   "w": 266,
+   "h": 214,
+   "title": "内置读取器",
+   "sub": "进程内 · 免安装 · 只读不执行",
+   "rows": [
+    {
+     "name": "Go · Rust · IL2CPP",
+     "desc": "构建信息"
+    },
+    {
+     "name": "Flutter · GPU",
+     "desc": "代码对象"
+    },
+    {
+     "name": "GGUF · safetensors",
+     "desc": "模型头"
+    },
+    {
+     "name": ".NET · .pyc · BEAM",
+     "desc": "托管代码"
+    },
+    {
+     "name": "JS / Electron",
+     "desc": "AST 重建"
+    }
+   ]
+  },
+  {
+   "id": "rt",
+   "layer": "ext",
+   "x": 904,
+   "y": 606,
+   "w": 266,
+   "h": 214,
+   "title": "运行时观测",
+   "sub": "让目标真的跑起来",
+   "rows": [
+    {
+     "name": "浏览器",
+     "desc": "CDP · Playwright"
+    },
+    {
+     "name": "V8 Inspector",
+     "desc": "被动发现脚本"
+    },
+    {
+     "name": "Frida",
+     "desc": "插桩会话"
+    },
+    {
+     "name": "进程录制",
+     "desc": "PTY · 文件变化"
+    }
+   ],
+   "footer": "{dim:以你的用户权限运行}"
+  },
+  {
+   "id": "proc",
+   "layer": "base",
+   "x": 16,
+   "y": 896,
+   "w": 562,
+   "h": 86,
+   "title": "src/process/ · 受管进程",
+   "lines": [
+    "独立进程组 · 私有根目录 · 超时 · 有界读取 · 保证清理"
+   ]
+  },
+  {
+   "id": "dom",
+   "layer": "base",
+   "x": 608,
+   "y": 896,
+   "w": 266,
+   "h": 86,
+   "title": "domain + contracts",
+   "lines": [
+    "纯函数 · Zod schema"
+   ]
+  },
+  {
+   "id": "fs",
+   "layer": "base",
+   "x": 904,
+   "y": 896,
+   "w": 266,
+   "h": 86,
+   "title": "filesystem · windows · config",
+   "lines": [
+    "受管文件句柄 · env 校验"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "flow": "call",
+   "from": "agent.r",
+   "to": "disp.l",
+   "label": "MCP"
+  },
+  {
+   "flow": "call",
+   "from": "term.r",
+   "to": "disp.l",
+   "mid": 297,
+   "joint": true
+  },
+  {
+   "flow": "call",
+   "from": "disp.r",
+   "to": "mcp.l",
+   "label": "mcp"
+  },
+  {
+   "flow": "call",
+   "from": "disp.b",
+   "to": "cli.t"
+  },
+  {
+   "flow": "call",
+   "from": "mcp.b",
+   "to": "app.t",
+   "label": "工具调用",
+   "labelSide": "right"
+  },
+  {
+   "flow": "call",
+   "from": "cli.b",
+   "to": "app.t@60px",
+   "mid": 384
+  },
+  {
+   "flow": "call",
+   "from": "comp.r",
+   "to": "sess.l",
+   "label": "工厂"
+  },
+  {
+   "flow": "call",
+   "from": "app.l",
+   "to": "sess.r"
+  },
+  {
+   "flow": "record",
+   "from": "app.r",
+   "to": "ev.l",
+   "label": "记录"
+  },
+  {
+   "flow": "result",
+   "from": "ev.t",
+   "to": "out.b",
+   "label": "汇总",
+   "labelSide": "right"
+  },
+  {
+   "flow": "result",
+   "from": "out.t",
+   "to": "agent.t",
+   "rail": "y:150",
+   "label": "结论 + 证据 → Agent",
+   "labelSeg": 2,
+   "labelColor": "amber"
+  },
+  {
+   "flow": "call",
+   "from": "comp.b",
+   "to": "byo.t",
+   "arrow": "both",
+   "label": "按需创建",
+   "labelSide": "right"
+  },
+  {
+   "flow": "call",
+   "from": "sess.b",
+   "to": "deep.t",
+   "arrow": "both",
+   "label": "只绑一个",
+   "labelSide": "right"
+  },
+  {
+   "flow": "call",
+   "from": "app.b",
+   "to": "inproc.t",
+   "arrow": "both",
+   "label": "解析文件",
+   "labelSide": "right"
+  },
+  {
+   "flow": "call",
+   "from": "app.b@-24px",
+   "to": "rt.t",
+   "arrow": "both",
+   "mid": 578,
+   "label": "观测",
+   "labelSeg": 2,
+   "labelSide": "above"
+  },
+  {
+   "flow": "proc",
+   "from": "byo.b",
+   "to": "proc.t@133px",
+   "label": "子进程",
+   "labelPos": [
+    141,
+    852
+   ],
+   "labelAnchor": "end"
+  },
+  {
+   "flow": "proc",
+   "from": "deep.b",
+   "to": "proc.t@429px",
+   "label": "启动 Hopper / Ghidra",
+   "labelPos": [
+    468,
+    852
+   ]
+  },
+  {
+   "flow": "dep",
+   "from": "inproc.b",
+   "to": "dom.t",
+   "label": "纯解析",
+   "labelPos": [
+    764,
+    852
+   ]
+  },
+  {
+   "flow": "proc",
+   "from": "rt.b",
+   "to": "fs.t",
+   "label": "浏览器 / Frida",
+   "labelPos": [
+    1060,
+    852
+   ]
+  }
+ ],
+ "log": {
+  "title": "live trace · 模块之间的数据交换",
+  "live": {
+   "rows": 7
+  }
+ },
+ "footer": {
+  "cwd": "~",
+  "cmd": "npx rea-agents setup",
+  "note": "给 Agent 注册 MCP + 工作流说明 · 之后重启 Agent · 分析全部在本地运行"
+ }
+}

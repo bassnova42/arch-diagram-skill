@@ -1,0 +1,14 @@
+{
+  "name": "arch-diagram",
+  "owner": {
+    "name": "bassnova42"
+  },
+  "plugins": [
+    {
+      "name": "arch-diagram",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "Turn a GitHub repo, article, PDF or local project into an animated terminal-blueprint architecture diagram: HTML, PNG, looping MP4/GIF or Mermaid, with a live trace log."
+    }
+  ]
+}
