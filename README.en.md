@@ -76,9 +76,9 @@ Just ask in Claude Code or Codex, for example:
 - `Draw the architecture of https://github.com/plausible/analytics`
 - `Turn this article into a flowchart: <URL>, export a 30-second video`
 - `Export that diagram as an image` / `as mermaid`
-- `/arch-diagram <repo or article URL>`
+- To call the skill explicitly: `/arch-diagram <repo or article URL>` in Claude Code, `$arch-diagram <repo or article URL>` in Codex
 
-Each diagram's source is `<slug>.spec.json`. To change a diagram, ask Claude to edit the spec and rebuild. You can also use the command line directly:
+Each diagram's source is `<slug>.spec.json`. To change a diagram, ask Claude Code or Codex to edit the spec and rebuild. You can also use the command line directly:
 
 ```bash
 npx @rokoai/arch-diagram build  my.spec.json my.html

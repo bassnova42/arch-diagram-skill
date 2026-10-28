@@ -76,9 +76,9 @@ Claude Code または Codex でそのまま頼むだけです。例：
 - `https://github.com/plausible/analytics のアーキテクチャ図を描いて`
 - `この記事をフローチャートにして：<URL>、30 秒の動画で出力`
 - `さっきの図を画像で出力して` / `mermaid で出力して`
-- `/arch-diagram <リポジトリまたは記事の URL>`
+- Skill を明示的に呼び出す場合：Claude Code では `/arch-diagram <URL>`、Codex では `$arch-diagram <URL>`
 
-図の元データは `<slug>.spec.json` です。修正したいときは Claude に spec を編集して再生成するよう頼みます。コマンドラインから直接操作することもできます：
+図の元データは `<slug>.spec.json` です。修正したいときは Claude Code または Codex に spec を編集して再生成するよう頼みます。コマンドラインから直接操作することもできます：
 
 ```bash
 npx @rokoai/arch-diagram build  my.spec.json my.html

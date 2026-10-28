@@ -77,9 +77,9 @@ cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 - `วาดแผนภาพสถาปัตยกรรมของ https://github.com/plausible/analytics`
 - `ทำบทความนี้เป็นผังงาน: <URL> แล้วส่งออกเป็นวิดีโอ 30 วินาที`
 - `ส่งออกแผนภาพเมื่อกี้เป็นรูปภาพ` / `เป็น mermaid`
-- `/arch-diagram <URL ของ repository หรือบทความ>`
+- ถ้าต้องการเรียก Skill นี้โดยตรง: ใน Claude Code พิมพ์ `/arch-diagram <URL>` ใน Codex พิมพ์ `$arch-diagram <URL>`
 
-ต้นฉบับของแต่ละแผนภาพคือ `<slug>.spec.json` ถ้าต้องการแก้ ให้บอก Claude แก้ spec แล้วสร้างใหม่ หรือจะใช้บรรทัดคำสั่งโดยตรงก็ได้:
+ต้นฉบับของแต่ละแผนภาพคือ `<slug>.spec.json` ถ้าต้องการแก้ ให้บอก Claude Code หรือ Codex แก้ spec แล้วสร้างใหม่ หรือจะใช้บรรทัดคำสั่งโดยตรงก็ได้:
 
 ```bash
 npx @rokoai/arch-diagram build  my.spec.json my.html

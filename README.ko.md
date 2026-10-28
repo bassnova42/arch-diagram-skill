@@ -77,9 +77,9 @@ Claude Code나 Codex에서 바로 요청하면 됩니다. 예:
 - `https://github.com/plausible/analytics 아키텍처 다이어그램 그려 줘`
 - `이 글을 플로차트로 만들어 줘: <URL>, 30초 동영상으로 출력`
 - `방금 그림을 이미지로 출력해 줘` / `mermaid로 출력해 줘`
-- `/arch-diagram <저장소 또는 글 URL>`
+- Skill을 명시적으로 호출하려면: Claude Code에서는 `/arch-diagram <URL>`, Codex에서는 `$arch-diagram <URL>`
 
-다이어그램의 원본은 `<slug>.spec.json`입니다. 수정하려면 Claude에게 spec을 고쳐서 다시 생성해 달라고 하면 됩니다. 명령줄에서 직접 다룰 수도 있습니다:
+다이어그램의 원본은 `<slug>.spec.json`입니다. 수정하려면 Claude Code나 Codex에게 spec을 고쳐서 다시 생성해 달라고 하면 됩니다. 명령줄에서 직접 다룰 수도 있습니다:
 
 ```bash
 npx @rokoai/arch-diagram build  my.spec.json my.html

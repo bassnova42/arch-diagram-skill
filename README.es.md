@@ -77,9 +77,9 @@ Pídelo directamente en Claude Code o Codex, por ejemplo:
 - `Dibuja la arquitectura de https://github.com/plausible/analytics`
 - `Convierte este artículo en un diagrama de flujo: <URL>, exporta un vídeo de 30 segundos`
 - `Exporta ese diagrama como imagen` / `como mermaid`
-- `/arch-diagram <URL del repositorio o artículo>`
+- Para llamar a la skill de forma explícita: `/arch-diagram <URL>` en Claude Code, `$arch-diagram <URL>` en Codex
 
-El origen de cada diagrama es `<slug>.spec.json`. Para cambiarlo, pide a Claude que edite el spec y lo regenere. También puedes usar la línea de comandos:
+El origen de cada diagrama es `<slug>.spec.json`. Para cambiarlo, pide a Claude Code o Codex que edite el spec y lo regenere. También puedes usar la línea de comandos:
 
 ```bash
 npx @rokoai/arch-diagram build  my.spec.json my.html

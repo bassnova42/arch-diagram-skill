@@ -76,9 +76,9 @@ cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 - `把 https://github.com/plausible/analytics 画成架构图`
 - `这篇文章画成流程图：<URL>，输出成视频，30 秒`
 - `把刚才的图输出成图片` / `输出成 mermaid`
-- `/arch-diagram <仓库或文章地址>`
+- 想明确指定用这个 Skill：Claude Code 里输入 `/arch-diagram <仓库或文章地址>`，Codex 里输入 `$arch-diagram <仓库或文章地址>`
 
-图的源文件是 `<slug>.spec.json`，要修改就让 Claude 改 spec，再重新生成。也可以用命令行直接操作：
+图的源文件是 `<slug>.spec.json`，要修改就让 Claude Code 或 Codex 改 spec，再重新生成。也可以用命令行直接操作：
 
 ```bash
 npx @rokoai/arch-diagram build  my.spec.json my.html
