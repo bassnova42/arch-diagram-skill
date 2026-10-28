@@ -1,8 +1,8 @@
 <p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
 
-# arch-diagram · Claude Code용 아키텍처 다이어그램 Skill
+# arch-diagram · Claude Code / Codex용 아키텍처 다이어그램 Skill
 
-GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude가 구조를 파악해 어두운 "터미널 설계도" 스타일의 아키텍처 다이어그램을 그립니다. 연결선 위로 패킷이 흐르고, 모듈끼리 데이터를 주고받을 때마다 하단 로그에 한 줄씩 실시간으로 추가됩니다.
+GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 Codex가 구조를 파악해 어두운 "터미널 설계도" 스타일의 아키텍처 다이어그램을 그립니다. 연결선 위로 패킷이 흐르고, 모듈끼리 데이터를 주고받을 때마다 하단 로그에 한 줄씩 실시간으로 추가됩니다.
 
 ![REA 아키텍처 다이어그램](docs/rea.png)
 
@@ -44,11 +44,20 @@ npx @rokoai/arch-diagram install
 
 `~/.claude/skills/arch-diagram`에 설치됩니다. `--project`를 붙이면 현재 프로젝트의 `.claude/skills/`에 설치됩니다. 업데이트하려면 다시 실행하고, 삭제는 `npx @rokoai/arch-diagram uninstall`입니다.
 
-**방법 2: Claude Code 플러그인**. Claude Code에서 다음을 실행합니다:
+Codex가 설치되어 있으면(`~/.codex`가 있으면) `~/.codex/skills/arch-diagram`에도 함께 설치됩니다. 한쪽에만 설치하려면 `--claude` 또는 `--codex`를 붙이세요.
+
+**방법 2: 플러그인**. Claude Code에서는 다음을 실행합니다:
 
 ```
 /plugin marketplace add bassnova42/arch-diagram-skill
 /plugin install arch-diagram@arch-diagram
+```
+
+Codex CLI에서는:
+
+```bash
+codex plugin marketplace add bassnova42/arch-diagram-skill
+codex plugin add arch-diagram@arch-diagram
 ```
 
 **방법 3: 직접 복사**
@@ -56,13 +65,14 @@ npx @rokoai/arch-diagram install
 ```bash
 git clone https://github.com/bassnova42/arch-diagram-skill
 cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
+cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 ```
 
-설치 후 Claude Code를 다시 시작하세요.
+설치 후 Claude Code 또는 Codex를 다시 시작하세요.
 
 ## 사용법
 
-Claude Code에서 바로 요청하면 됩니다. 예:
+Claude Code나 Codex에서 바로 요청하면 됩니다. 예:
 
 - `https://github.com/plausible/analytics 아키텍처 다이어그램 그려 줘`
 - `이 글을 플로차트로 만들어 줘: <URL>, 30초 동영상으로 출력`

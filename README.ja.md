@@ -1,8 +1,8 @@
 <p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
 
-# arch-diagram · Claude Code 用アーキテクチャ図 Skill
+# arch-diagram · Claude Code / Codex 用アーキテクチャ図 Skill
 
-GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを渡すと、Claude が構造を読み取り、ダークな「ターミナル設計図」スタイルのアーキテクチャ図を描きます。線の上をパケットが流れ、モジュール間でデータがやり取りされるたびに、下部のログに 1 行ずつリアルタイムで追加されます。
+GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを渡すと、Claude Code または Codex が構造を読み取り、ダークな「ターミナル設計図」スタイルのアーキテクチャ図を描きます。線の上をパケットが流れ、モジュール間でデータがやり取りされるたびに、下部のログに 1 行ずつリアルタイムで追加されます。
 
 ![REA のアーキテクチャ図](docs/rea.png)
 
@@ -43,11 +43,20 @@ npx @rokoai/arch-diagram install
 
 `~/.claude/skills/arch-diagram` にインストールされます。`--project` を付けると、現在のプロジェクトの `.claude/skills/` に入ります。更新するときはもう一度実行し、削除は `npx @rokoai/arch-diagram uninstall` です。
 
-**方法 2：Claude Code プラグイン**。Claude Code で次を実行します：
+Codex がインストールされている場合（`~/.codex` がある場合）は、`~/.codex/skills/arch-diagram` にも同時に入ります。片方だけに入れるときは `--claude` または `--codex` を付けます。
+
+**方法 2：プラグイン**。Claude Code では次を実行します：
 
 ```
 /plugin marketplace add bassnova42/arch-diagram-skill
 /plugin install arch-diagram@arch-diagram
+```
+
+Codex CLI では：
+
+```bash
+codex plugin marketplace add bassnova42/arch-diagram-skill
+codex plugin add arch-diagram@arch-diagram
 ```
 
 **方法 3：手動でコピー**
@@ -55,13 +64,14 @@ npx @rokoai/arch-diagram install
 ```bash
 git clone https://github.com/bassnova42/arch-diagram-skill
 cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
+cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 ```
 
-インストール後、Claude Code を再起動してください。
+インストール後、Claude Code または Codex を再起動してください。
 
 ## 使い方
 
-Claude Code でそのまま頼むだけです。例：
+Claude Code または Codex でそのまま頼むだけです。例：
 
 - `https://github.com/plausible/analytics のアーキテクチャ図を描いて`
 - `この記事をフローチャートにして：<URL>、30 秒の動画で出力`

@@ -1,8 +1,8 @@
 <p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
 
-# arch-diagram · Architecture diagram skill for Claude Code
+# arch-diagram · Architecture diagram skill for Claude Code and Codex
 
-Give it a GitHub repo, a technical article, a PDF or a local project. Claude reads the structure and draws a dark "terminal blueprint" architecture diagram. Packets flow along the wires, and the log at the bottom adds a line in real time whenever two modules exchange data.
+Give it a GitHub repo, a technical article, a PDF or a local project. Claude Code or Codex reads the structure and draws a dark "terminal blueprint" architecture diagram. Packets flow along the wires, and the log at the bottom adds a line in real time whenever two modules exchange data.
 
 ![REA architecture diagram](docs/rea.png)
 
@@ -43,11 +43,20 @@ npx @rokoai/arch-diagram install
 
 This installs to `~/.claude/skills/arch-diagram`. Add `--project` to install into the current project's `.claude/skills/`. Run it again to update; remove it with `npx @rokoai/arch-diagram uninstall`.
 
-**Option 2: Claude Code plugin**. In Claude Code, run:
+If Codex is installed (`~/.codex` exists), it is installed to `~/.codex/skills/arch-diagram` as well. Add `--claude` or `--codex` to install for only one of them.
+
+**Option 2: plugin**. In Claude Code, run:
 
 ```
 /plugin marketplace add bassnova42/arch-diagram-skill
 /plugin install arch-diagram@arch-diagram
+```
+
+In Codex CLI:
+
+```bash
+codex plugin marketplace add bassnova42/arch-diagram-skill
+codex plugin add arch-diagram@arch-diagram
 ```
 
 **Option 3: copy by hand**
@@ -55,13 +64,14 @@ This installs to `~/.claude/skills/arch-diagram`. Add `--project` to install int
 ```bash
 git clone https://github.com/bassnova42/arch-diagram-skill
 cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
+cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 ```
 
-Restart Claude Code after installing.
+Restart Claude Code or Codex after installing.
 
 ## Usage
 
-Just ask in Claude Code, for example:
+Just ask in Claude Code or Codex, for example:
 
 - `Draw the architecture of https://github.com/plausible/analytics`
 - `Turn this article into a flowchart: <URL>, export a 30-second video`

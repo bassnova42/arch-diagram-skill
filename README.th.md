@@ -1,8 +1,8 @@
 <p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
 
-# arch-diagram · Skill วาดแผนภาพสถาปัตยกรรมสำหรับ Claude Code
+# arch-diagram · Skill วาดแผนภาพสถาปัตยกรรมสำหรับ Claude Code และ Codex
 
-ส่ง GitHub repository บทความเทคนิค ไฟล์ PDF หรือโปรเจกต์ในเครื่องให้ แล้ว Claude จะอ่านโครงสร้างและวาดแผนภาพสถาปัตยกรรมโทนมืดสไตล์ "พิมพ์เขียวเทอร์มินัล" มีแพ็กเก็ตวิ่งไปตามเส้นเชื่อม และ log ด้านล่างจะเพิ่มบรรทัดใหม่แบบเรียลไทม์ทุกครั้งที่โมดูลส่งข้อมูลถึงกัน
+ส่ง GitHub repository บทความเทคนิค ไฟล์ PDF หรือโปรเจกต์ในเครื่องให้ แล้ว Claude Code หรือ Codex จะอ่านโครงสร้างและวาดแผนภาพสถาปัตยกรรมโทนมืดสไตล์ "พิมพ์เขียวเทอร์มินัล" มีแพ็กเก็ตวิ่งไปตามเส้นเชื่อม และ log ด้านล่างจะเพิ่มบรรทัดใหม่แบบเรียลไทม์ทุกครั้งที่โมดูลส่งข้อมูลถึงกัน
 
 ![แผนภาพสถาปัตยกรรมของ REA](docs/rea.png)
 
@@ -44,11 +44,20 @@ npx @rokoai/arch-diagram install
 
 จะติดตั้งไว้ที่ `~/.claude/skills/arch-diagram` ถ้าเติม `--project` จะติดตั้งใน `.claude/skills/` ของโปรเจกต์ปัจจุบัน รันอีกครั้งเพื่ออัปเดต และถอนการติดตั้งด้วย `npx @rokoai/arch-diagram uninstall`
 
-**วิธีที่ 2: ปลั๊กอิน Claude Code** รันใน Claude Code:
+ถ้าติดตั้ง Codex ไว้ (มีโฟลเดอร์ `~/.codex`) จะติดตั้งลง `~/.codex/skills/arch-diagram` ด้วย ถ้าต้องการติดตั้งให้ตัวใดตัวหนึ่งเท่านั้น ให้เติม `--claude` หรือ `--codex`
+
+**วิธีที่ 2: ปลั๊กอิน** ใน Claude Code ให้รัน:
 
 ```
 /plugin marketplace add bassnova42/arch-diagram-skill
 /plugin install arch-diagram@arch-diagram
+```
+
+ใน Codex CLI:
+
+```bash
+codex plugin marketplace add bassnova42/arch-diagram-skill
+codex plugin add arch-diagram@arch-diagram
 ```
 
 **วิธีที่ 3: คัดลอกเอง**
@@ -56,13 +65,14 @@ npx @rokoai/arch-diagram install
 ```bash
 git clone https://github.com/bassnova42/arch-diagram-skill
 cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
+cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 ```
 
-รีสตาร์ต Claude Code หลังติดตั้ง
+รีสตาร์ต Claude Code หรือ Codex หลังติดตั้ง
 
 ## วิธีใช้
 
-สั่งใน Claude Code ได้เลย เช่น:
+สั่งใน Claude Code หรือ Codex ได้เลย เช่น:
 
 - `วาดแผนภาพสถาปัตยกรรมของ https://github.com/plausible/analytics`
 - `ทำบทความนี้เป็นผังงาน: <URL> แล้วส่งออกเป็นวิดีโอ 30 วินาที`

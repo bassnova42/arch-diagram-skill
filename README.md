@@ -1,8 +1,8 @@
 <p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
 
-# arch-diagram · Claude Code 架构图 Skill
+# arch-diagram · Claude Code / Codex 架构图 Skill
 
-给它一个 GitHub 仓库、一篇技术文章、一份 PDF 或本地项目，Claude 会读懂结构，画出一张深色"终端蓝图"风格的架构图。连线上有流动的光点，底部的 log 会在模块之间交换数据时实时加一行。
+给它一个 GitHub 仓库、一篇技术文章、一份 PDF 或本地项目，Claude Code 或 Codex 会读懂结构，画出一张深色"终端蓝图"风格的架构图。连线上有流动的光点，底部的 log 会在模块之间交换数据时实时加一行。
 
 ![REA 架构图](docs/rea.png)
 
@@ -43,11 +43,20 @@ npx @rokoai/arch-diagram install
 
 会装到 `~/.claude/skills/arch-diagram`。加 `--project` 则装到当前项目的 `.claude/skills/`。更新时再跑一次；卸载用 `npx @rokoai/arch-diagram uninstall`。
 
-**方式二：Claude Code 插件**。在 Claude Code 里依次执行：
+装了 Codex 的话（存在 `~/.codex`），会同时装到 `~/.codex/skills/arch-diagram`。只装其中一个，可以加 `--claude` 或 `--codex`。
+
+**方式二：插件**。Claude Code 里依次执行：
 
 ```
 /plugin marketplace add bassnova42/arch-diagram-skill
 /plugin install arch-diagram@arch-diagram
+```
+
+Codex CLI 里：
+
+```bash
+codex plugin marketplace add bassnova42/arch-diagram-skill
+codex plugin add arch-diagram@arch-diagram
 ```
 
 **方式三：手动拷贝**
@@ -55,13 +64,14 @@ npx @rokoai/arch-diagram install
 ```bash
 git clone https://github.com/bassnova42/arch-diagram-skill
 cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
+cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 ```
 
-装好后重启 Claude Code。
+装好后重启 Claude Code 或 Codex。
 
 ## 用法
 
-在 Claude Code 里直接说，比如：
+在 Claude Code 或 Codex 里直接说，比如：
 
 - `把 https://github.com/plausible/analytics 画成架构图`
 - `这篇文章画成流程图：<URL>，输出成视频，30 秒`

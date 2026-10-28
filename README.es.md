@@ -1,8 +1,8 @@
 <p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
 
-# arch-diagram · Skill de diagramas de arquitectura para Claude Code
+# arch-diagram · Skill de diagramas de arquitectura para Claude Code y Codex
 
-Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local. Claude entiende la estructura y dibuja un diagrama de arquitectura oscuro, estilo "plano de terminal". Por los cables circulan paquetes animados, y el log inferior añade una línea en tiempo real cada vez que dos módulos intercambian datos.
+Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local. Claude Code o Codex entiende la estructura y dibuja un diagrama de arquitectura oscuro, estilo "plano de terminal". Por los cables circulan paquetes animados, y el log inferior añade una línea en tiempo real cada vez que dos módulos intercambian datos.
 
 ![Diagrama de arquitectura de REA](docs/rea.png)
 
@@ -44,11 +44,20 @@ npx @rokoai/arch-diagram install
 
 Se instala en `~/.claude/skills/arch-diagram`. Con `--project` se instala en `.claude/skills/` del proyecto actual. Vuelve a ejecutarlo para actualizar; para desinstalar, `npx @rokoai/arch-diagram uninstall`.
 
-**Opción 2: plugin de Claude Code**. Ejecuta en Claude Code:
+Si tienes Codex instalado (existe `~/.codex`), también se instala en `~/.codex/skills/arch-diagram`. Añade `--claude` o `--codex` para instalarlo solo en uno de ellos.
+
+**Opción 2: plugin**. En Claude Code, ejecuta:
 
 ```
 /plugin marketplace add bassnova42/arch-diagram-skill
 /plugin install arch-diagram@arch-diagram
+```
+
+En Codex CLI:
+
+```bash
+codex plugin marketplace add bassnova42/arch-diagram-skill
+codex plugin add arch-diagram@arch-diagram
 ```
 
 **Opción 3: copia manual**
@@ -56,13 +65,14 @@ Se instala en `~/.claude/skills/arch-diagram`. Con `--project` se instala en `.c
 ```bash
 git clone https://github.com/bassnova42/arch-diagram-skill
 cp -R arch-diagram-skill/skills/arch-diagram ~/.claude/skills/
+cp -R arch-diagram-skill/skills/arch-diagram ~/.codex/skills/   # Codex
 ```
 
-Reinicia Claude Code después de instalar.
+Reinicia Claude Code o Codex después de instalar.
 
 ## Uso
 
-Pídelo directamente en Claude Code, por ejemplo:
+Pídelo directamente en Claude Code o Codex, por ejemplo:
 
 - `Dibuja la arquitectura de https://github.com/plausible/analytics`
 - `Convierte este artículo en un diagrama de flujo: <URL>, exporta un vídeo de 30 segundos`
