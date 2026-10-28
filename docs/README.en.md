@@ -23,7 +23,32 @@ Give it a GitHub repo, a technical article, a PDF or a local project. Claude Cod
   - GIF: one loop
   - Mermaid flowchart
 
-![Animated example](elephant-goldfish.gif)
+## Examples
+
+### 1. Architecture of an article
+
+Source: Dave Rensin, “Elephants, Goldfish, and the New Golden Age of Software Engineering”  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![Architecture of an article](examples/elephant-goldfish.gif)
+
+[▶ Full video (MP4, 30 s)](examples/elephant-goldfish.mp4)
+
+### 2. Architecture of a GitHub repo
+
+Source: <https://github.com/morluto/rea>
+
+![Architecture of a GitHub repo](examples/rea.gif)
+
+[▶ Full video (MP4, 20 s)](examples/rea.mp4)
+
+### 3. Architecture of a requirements document
+
+Source: the requirements document (PRD) and code of Ballet, a ballet-scoring mini program. Private project, no public link.
+
+![Architecture of a requirements document](examples/ballet.gif)
+
+[▶ Full video (MP4, 20 s)](examples/ballet.mp4)
 
 ## The diagram speaks your prompt's language
 

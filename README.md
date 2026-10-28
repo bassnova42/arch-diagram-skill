@@ -23,7 +23,32 @@
   - GIF：一个周期
   - Mermaid 流程图
 
-![动图示例](docs/elephant-goldfish.gif)
+## 示例
+
+### 1. 对一篇文章做的架构图
+
+来源：Dave Rensin 的文章《Elephants, Goldfish, and the New Golden Age of Software Engineering》  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![对一篇文章做的架构图](docs/examples/elephant-goldfish.gif)
+
+[▶ 完整视频（MP4，30 秒）](docs/examples/elephant-goldfish.mp4)
+
+### 2. 对一个 GitHub 仓库做的架构图
+
+来源：<https://github.com/morluto/rea>
+
+![对一个 GitHub 仓库做的架构图](docs/examples/rea.gif)
+
+[▶ 完整视频（MP4，20 秒）](docs/examples/rea.mp4)
+
+### 3. 对一份需求文档做的架构图
+
+来源：Ballet 芭蕾动作评分小程序的需求文档（PRD）和代码。这是私有项目，没有公开链接。
+
+![对一份需求文档做的架构图](docs/examples/ballet.gif)
+
+[▶ 完整视频（MP4，20 秒）](docs/examples/ballet.mp4)
 
 ## 图的语言跟着提示词走
 

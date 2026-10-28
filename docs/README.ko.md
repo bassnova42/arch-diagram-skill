@@ -23,7 +23,32 @@ GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 
   - GIF: 한 주기
   - Mermaid 플로차트
 
-![애니메이션 예시](elephant-goldfish.gif)
+## 예시
+
+### 1. 글로 만든 아키텍처 다이어그램
+
+출처: Dave Rensin의 글 「Elephants, Goldfish, and the New Golden Age of Software Engineering」  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![글로 만든 아키텍처 다이어그램](examples/elephant-goldfish.gif)
+
+[▶ 전체 영상 (MP4, 30초)](examples/elephant-goldfish.mp4)
+
+### 2. GitHub 저장소로 만든 아키텍처 다이어그램
+
+출처: <https://github.com/morluto/rea>
+
+![GitHub 저장소로 만든 아키텍처 다이어그램](examples/rea.gif)
+
+[▶ 전체 영상 (MP4, 20초)](examples/rea.mp4)
+
+### 3. 요구사항 문서로 만든 아키텍처 다이어그램
+
+출처: 발레 동작 채점 미니 프로그램 Ballet의 요구사항 문서(PRD)와 코드. 비공개 프로젝트라 공개 링크는 없습니다.
+
+![요구사항 문서로 만든 아키텍처 다이어그램](examples/ballet.gif)
+
+[▶ 전체 영상 (MP4, 20초)](examples/ballet.mp4)
 
 ## 다이어그램 언어는 프롬프트 언어를 따릅니다
 

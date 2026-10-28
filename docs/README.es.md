@@ -23,7 +23,32 @@ Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local
   - GIF: un ciclo
   - Diagrama de flujo Mermaid
 
-![Ejemplo animado](elephant-goldfish.gif)
+## Ejemplos
+
+### 1. Arquitectura de un artículo
+
+Fuente: artículo de Dave Rensin «Elephants, Goldfish, and the New Golden Age of Software Engineering»  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![Arquitectura de un artículo](examples/elephant-goldfish.gif)
+
+[▶ Vídeo completo (MP4, 30 s)](examples/elephant-goldfish.mp4)
+
+### 2. Arquitectura de un repositorio de GitHub
+
+Fuente: <https://github.com/morluto/rea>
+
+![Arquitectura de un repositorio de GitHub](examples/rea.gif)
+
+[▶ Vídeo completo (MP4, 20 s)](examples/rea.mp4)
+
+### 3. Arquitectura de un documento de requisitos
+
+Fuente: el documento de requisitos (PRD) y el código de Ballet, una miniapp que puntúa movimientos de ballet. Proyecto privado, sin enlace público.
+
+![Arquitectura de un documento de requisitos](examples/ballet.gif)
+
+[▶ Vídeo completo (MP4, 20 s)](examples/ballet.mp4)
 
 ## El diagrama habla el idioma de tu prompt
 

@@ -23,7 +23,32 @@ GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを�
   - GIF：1 周期
   - Mermaid フローチャート
 
-![アニメーション例](elephant-goldfish.gif)
+## 作例
+
+### 1. 記事から作ったアーキテクチャ図
+
+元データ: Dave Rensin の記事「Elephants, Goldfish, and the New Golden Age of Software Engineering」  
+<https://drensin.medium.com/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874>
+
+![記事から作ったアーキテクチャ図](examples/elephant-goldfish.gif)
+
+[▶ フル動画（MP4、30 秒）](examples/elephant-goldfish.mp4)
+
+### 2. GitHub リポジトリから作ったアーキテクチャ図
+
+元データ: <https://github.com/morluto/rea>
+
+![GitHub リポジトリから作ったアーキテクチャ図](examples/rea.gif)
+
+[▶ フル動画（MP4、20 秒）](examples/rea.mp4)
+
+### 3. 要件定義書から作ったアーキテクチャ図
+
+元データ: バレエの動きを採点するミニプログラム Ballet の要件定義書（PRD）とコード。非公開プロジェクトのため公開リンクはありません。
+
+![要件定義書から作ったアーキテクチャ図](examples/ballet.gif)
+
+[▶ フル動画（MP4、20 秒）](examples/ballet.mp4)
 
 ## 図の言語はプロンプトの言語に合わせて決まります
 
