@@ -1,10 +1,14 @@
-<p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
+<p align="center">
+  <a href="../README.md">简体中文</a> · <b>English</b> · <a href="README.es.md">Español</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.th.md">ไทย</a>
+</p>
 
-# arch-diagram · Architecture diagram skill for Claude Code and Codex
+# RokoAI arch-diagram · Architecture Diagram Skill
+
+Works with **Claude Code** and **Codex**.
 
 Give it a GitHub repo, a technical article, a PDF or a local project. Claude Code or Codex reads the structure and draws a dark "terminal blueprint" architecture diagram. Packets flow along the wires, and the log at the bottom adds a line in real time whenever two modules exchange data.
 
-![REA architecture diagram](docs/rea.png)
+![REA architecture diagram](rea.png)
 
 ## What it does
 
@@ -19,7 +23,7 @@ Give it a GitHub repo, a technical article, a PDF or a local project. Claude Cod
   - GIF: one loop
   - Mermaid flowchart
 
-![Animated example](docs/elephant-goldfish.gif)
+![Animated example](elephant-goldfish.gif)
 
 ## The diagram speaks your prompt's language
 

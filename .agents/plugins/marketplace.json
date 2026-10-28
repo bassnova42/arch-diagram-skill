@@ -1,11 +1,20 @@
 {
   "name": "arch-diagram",
-  "interface": { "displayName": "Arch Diagram" },
+  "interface": {
+    "displayName": "RokoAI arch-diagram"
+  },
   "plugins": [
     {
       "name": "arch-diagram",
-      "source": { "source": "npm", "package": "@rokoai/arch-diagram", "version": "1.2.0" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "source": {
+        "source": "npm",
+        "package": "@rokoai/arch-diagram",
+        "version": "1.2.0"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
       "category": "Developer Tools"
     }
   ]

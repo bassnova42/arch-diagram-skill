@@ -1,10 +1,14 @@
-<p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
+<p align="center">
+  <a href="../README.md">简体中文</a> · <a href="README.en.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <b>ไทย</b>
+</p>
 
-# arch-diagram · Skill วาดแผนภาพสถาปัตยกรรมสำหรับ Claude Code และ Codex
+# RokoAI arch-diagram · Skill วาดแผนภาพสถาปัตยกรรม
+
+ใช้ได้กับ **Claude Code** และ **Codex**
 
 ส่ง GitHub repository บทความเทคนิค ไฟล์ PDF หรือโปรเจกต์ในเครื่องให้ แล้ว Claude Code หรือ Codex จะอ่านโครงสร้างและวาดแผนภาพสถาปัตยกรรมโทนมืดสไตล์ "พิมพ์เขียวเทอร์มินัล" มีแพ็กเก็ตวิ่งไปตามเส้นเชื่อม และ log ด้านล่างจะเพิ่มบรรทัดใหม่แบบเรียลไทม์ทุกครั้งที่โมดูลส่งข้อมูลถึงกัน
 
-![แผนภาพสถาปัตยกรรมของ REA](docs/rea.png)
+![แผนภาพสถาปัตยกรรมของ REA](rea.png)
 
 ## ทำอะไรได้บ้าง
 
@@ -19,7 +23,7 @@
   - GIF: หนึ่งรอบ
   - ผังงาน Mermaid
 
-![ตัวอย่างภาพเคลื่อนไหว](docs/elephant-goldfish.gif)
+![ตัวอย่างภาพเคลื่อนไหว](elephant-goldfish.gif)
 
 ## ภาษาของแผนภาพเป็นไปตามภาษาของพรอมต์
 

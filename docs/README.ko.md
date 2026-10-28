@@ -1,10 +1,14 @@
-<p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
+<p align="center">
+  <a href="../README.md">简体中文</a> · <a href="README.en.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.ja.md">日本語</a> · <b>한국어</b> · <a href="README.th.md">ไทย</a>
+</p>
 
-# arch-diagram · Claude Code / Codex용 아키텍처 다이어그램 Skill
+# RokoAI arch-diagram 아키텍처 다이어그램 Skill
+
+**Claude Code**와 **Codex**에서 사용할 수 있습니다.
 
 GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 Codex가 구조를 파악해 어두운 "터미널 설계도" 스타일의 아키텍처 다이어그램을 그립니다. 연결선 위로 패킷이 흐르고, 모듈끼리 데이터를 주고받을 때마다 하단 로그에 한 줄씩 실시간으로 추가됩니다.
 
-![REA 아키텍처 다이어그램](docs/rea.png)
+![REA 아키텍처 다이어그램](rea.png)
 
 ## 주요 기능
 
@@ -19,7 +23,7 @@ GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 
   - GIF: 한 주기
   - Mermaid 플로차트
 
-![애니메이션 예시](docs/elephant-goldfish.gif)
+![애니메이션 예시](elephant-goldfish.gif)
 
 ## 다이어그램 언어는 프롬프트 언어를 따릅니다
 

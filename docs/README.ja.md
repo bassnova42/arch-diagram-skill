@@ -1,10 +1,14 @@
-<p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
+<p align="center">
+  <a href="../README.md">简体中文</a> · <a href="README.en.md">English</a> · <a href="README.es.md">Español</a> · <b>日本語</b> · <a href="README.ko.md">한국어</a> · <a href="README.th.md">ไทย</a>
+</p>
 
-# arch-diagram · Claude Code / Codex 用アーキテクチャ図 Skill
+# RokoAI arch-diagram アーキテクチャ図 Skill
+
+**Claude Code** と **Codex** で使えます。
 
 GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを渡すと、Claude Code または Codex が構造を読み取り、ダークな「ターミナル設計図」スタイルのアーキテクチャ図を描きます。線の上をパケットが流れ、モジュール間でデータがやり取りされるたびに、下部のログに 1 行ずつリアルタイムで追加されます。
 
-![REA のアーキテクチャ図](docs/rea.png)
+![REA のアーキテクチャ図](rea.png)
 
 ## できること
 
@@ -19,7 +23,7 @@ GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを�
   - GIF：1 周期
   - Mermaid フローチャート
 
-![アニメーション例](docs/elephant-goldfish.gif)
+![アニメーション例](elephant-goldfish.gif)
 
 ## 図の言語はプロンプトの言語に合わせて決まります
 

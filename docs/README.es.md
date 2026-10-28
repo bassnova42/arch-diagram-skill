@@ -1,10 +1,14 @@
-<p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
+<p align="center">
+  <a href="../README.md">简体中文</a> · <a href="README.en.md">English</a> · <b>Español</b> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a> · <a href="README.th.md">ไทย</a>
+</p>
 
-# arch-diagram · Skill de diagramas de arquitectura para Claude Code y Codex
+# RokoAI arch-diagram · Skill de diagramas de arquitectura
+
+Funciona con **Claude Code** y **Codex**.
 
 Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local. Claude Code o Codex entiende la estructura y dibuja un diagrama de arquitectura oscuro, estilo "plano de terminal". Por los cables circulan paquetes animados, y el log inferior añade una línea en tiempo real cada vez que dos módulos intercambian datos.
 
-![Diagrama de arquitectura de REA](docs/rea.png)
+![Diagrama de arquitectura de REA](rea.png)
 
 ## Qué hace
 
@@ -19,7 +23,7 @@ Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local
   - GIF: un ciclo
   - Diagrama de flujo Mermaid
 
-![Ejemplo animado](docs/elephant-goldfish.gif)
+![Ejemplo animado](elephant-goldfish.gif)
 
 ## El diagrama habla el idioma de tu prompt
 

@@ -1,6 +1,10 @@
-<p align="center">[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [ไทย](README.th.md)</p>
+<p align="center">
+  <b>简体中文</b> · <a href="docs/README.en.md">English</a> · <a href="docs/README.es.md">Español</a> · <a href="docs/README.ja.md">日本語</a> · <a href="docs/README.ko.md">한국어</a> · <a href="docs/README.th.md">ไทย</a>
+</p>
 
-# arch-diagram · Claude Code / Codex 架构图 Skill
+# RokoAI arch-diagram 架构图 Skill
+
+适用于 **Claude Code** 和 **Codex**。
 
 给它一个 GitHub 仓库、一篇技术文章、一份 PDF 或本地项目，Claude Code 或 Codex 会读懂结构，画出一张深色"终端蓝图"风格的架构图。连线上有流动的光点，底部的 log 会在模块之间交换数据时实时加一行。
 

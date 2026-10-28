@@ -2,19 +2,31 @@
   "name": "arch-diagram",
   "version": "1.2.0",
   "description": "Turn a GitHub repo, article, PDF or local project into an animated terminal-blueprint architecture diagram: HTML, PNG, looping MP4/GIF or Mermaid, with a live trace log.",
-  "author": { "name": "bassnova42", "url": "https://github.com/bassnova42" },
+  "author": {
+    "name": "bassnova42",
+    "url": "https://github.com/bassnova42"
+  },
   "homepage": "https://github.com/bassnova42/arch-diagram-skill",
   "repository": "https://github.com/bassnova42/arch-diagram-skill",
   "license": "MIT",
-  "keywords": ["architecture", "diagram", "mermaid", "video", "skill"],
+  "keywords": [
+    "architecture",
+    "diagram",
+    "mermaid",
+    "video",
+    "skill"
+  ],
   "skills": "./skills",
   "interface": {
-    "displayName": "Arch Diagram",
+    "displayName": "RokoAI arch-diagram",
     "shortDescription": "Animated architecture diagrams from any repo or article",
     "longDescription": "Reads a GitHub repo, article, PDF or local project and draws a dark terminal-blueprint architecture diagram with typed animated wires and a live trace log. Exports HTML, PNG, looping MP4/GIF and Mermaid. The diagram is written in the language of your prompt.",
     "developerName": "bassnova42",
     "category": "Developer Tools",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://github.com/bassnova42/arch-diagram-skill",
     "defaultPrompt": [
       "Draw the architecture of this repository.",
