@@ -51,6 +51,8 @@ This installs to `~/.claude/skills/arch-diagram`. Add `--project` to install int
 
 If Codex is installed (`~/.codex` exists), it is installed to `~/.codex/skills/arch-diagram` as well. Add `--claude` or `--codex` to install for only one of them.
 
+> Running `npx @rokoai/arch-diagram …` from inside a clone of this repository fails with `arch-diagram: command not found`: npm resolves the package to the checkout itself and does not put its command on PATH. Run it from another directory, or inside the checkout use `node bin/cli.mjs install` (same flags, e.g. `--codex`).
+
 **Option 2: plugin**. In Claude Code, run:
 
 ```

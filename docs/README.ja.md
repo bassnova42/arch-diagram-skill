@@ -51,6 +51,8 @@ npx @rokoai/arch-diagram install
 
 Codex がインストールされている場合（`~/.codex` がある場合）は、`~/.codex/skills/arch-diagram` にも同時に入ります。片方だけに入れるときは `--claude` または `--codex` を付けます。
 
+> このリポジトリの clone の中で `npx @rokoai/arch-diagram …` を実行すると `arch-diagram: command not found` になります（npm がカレントディレクトリをこのパッケージ自体とみなし、コマンドを PATH に追加しないため）。リポジトリの外で実行するか、clone の中では `node bin/cli.mjs install` を使ってください（`--codex` など同じオプションが使えます）。
+
 **方法 2：プラグイン**。Claude Code では次を実行します：
 
 ```
