@@ -11,7 +11,16 @@
   const W = S.width || 1080;
   const NS = 'http://www.w3.org/2000/svg';
   const SHORT = { bl: 'blue', cy: 'cyan', gr: 'green', am: 'amber', pu: 'purple', rd: 'red', or: 'orange' };
-  const col = c => SHORT[c] || c || 'faint';
+  // only palette names ever reach markup or CSS: an unknown color (or one carrying quotes/markup) falls back to faint
+  const COLORS = new Set(['blue', 'cyan', 'green', 'amber', 'purple', 'red', 'orange', 'text', 'dim', 'faint']);
+  const badColors = new Set();
+  const col = c => {
+    if (c == null || c === '') return 'faint';
+    const k = Object.prototype.hasOwnProperty.call(SHORT, c) ? SHORT[c] : c;
+    if (typeof k === 'string' && COLORS.has(k)) return k;
+    badColors.add(String(c));
+    return 'faint';
+  };
   const cssv = n => getComputedStyle(document.documentElement).getPropertyValue('--' + n).trim();
   // UI words follow spec.lang (zh, en, ja, ko, es, th; anything else falls back to English)
   const UI = {
@@ -370,7 +379,7 @@
     if (!o.what && (!A || !Z)) return;
     const f = FLOW[e.flow] || {};
     liveEdges.push({
-      who: o.who || e.flow || '·', color: o.color || k,
+      who: o.who || e.flow || '·', color: col(o.color || k),
       what: o.what || `${A} ${e.arrow === 'both' ? '⇄' : '→'} ${Z}`,
       detail: o.detail || (e.label ? plain(e.label).replace(/\n/g, ' ') : plain(f.label || '')),
       timing,
@@ -508,6 +517,7 @@
     if (x > Math.min(h.a[0], h.b[0]) + 1 && x < Math.max(h.a[0], h.b[0]) - 1 &&
         y > Math.min(v.a[1], v.b[1]) + 1 && y < Math.max(v.a[1], v.b[1]) - 1) crossings++;
   }
+  for (const c of badColors) issues.push(`unknown color ${JSON.stringify(c)} — use one of: ${[...COLORS].join(' ')} (or ${Object.keys(SHORT).join(' ')})`);
   if (crossings) warnings.push(`${crossings} wire crossing(s) — fine if unavoidable, but try reordering boxes first`);
 
   const pre = el('pre', null, null, document.body);
