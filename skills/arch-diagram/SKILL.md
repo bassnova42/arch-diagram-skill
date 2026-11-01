@@ -1,6 +1,6 @@
 ---
 name: arch-diagram
-description: Turn any source — a GitHub repo, a technical article or blog URL, a PDF, a local project folder, or pasted notes — into a dense dark "terminal blueprint" architecture diagram with a structure fitted to the content, colors by element kind and typed animated wires. Outputs an interactive HTML page plus, on request, a PNG image, an MP4 video of any length, an animated GIF, or an editable Mermaid flowchart. Use when the user says 架构图 / 画架构 / 系统架构 / 流程图 / 画一下这个仓库 / 这篇文章画成图 / 输出成图片 / 输出成视频 / 动图 / mermaid / architecture diagram / system diagram / draw how X works, gives a repo or article and wants it visualized, asks to turn an existing diagram into an image, video, GIF or Mermaid, or runs /arch-diagram.
+description: Turn any source — a GitHub repo, a technical article or blog URL, a PDF, a local project folder, or pasted notes — into a dense architecture diagram with a structure fitted to the content, drawn in one of eight themes (dark "terminal" by default; blueprint, drafting, whiteboard, brutalism, crt, saas, isometric), colors by element kind and typed animated wires. Outputs an interactive HTML page plus, on request, a PNG image, an MP4 video of any length, an animated GIF, or an editable Mermaid flowchart. Use when the user says 架构图 / 画架构 / 系统架构 / 流程图 / 画一下这个仓库 / 这篇文章画成图 / 输出成图片 / 输出成视频 / 动图 / mermaid / architecture diagram / system diagram / draw how X works, gives a repo or article and wants it visualized, asks to turn an existing diagram into an image, video, GIF or Mermaid, asks for a style (蓝图 / 工程图纸 / 手绘 / 白板 / 粗野 / 复古终端 / CRT / 简洁浅色 / SaaS / 3D / 等距 / 换个风格 / blueprint / hand-drawn / isometric / theme), or runs /arch-diagram.
 ---
 
 # arch-diagram
@@ -11,11 +11,11 @@ This skill works in Claude Code, Codex and other agents that load `SKILL.md` ski
 
 Requirements: Node ≥ 18 and Chrome, Chromium or Edge (set `CHROME=/path` when it is somewhere unusual). `ffmpeg` is needed only for MP4 and GIF output.
 
-- `scripts/build.mjs <spec.json> <out.html>`: validates ids and anchors, then inlines everything into one HTML file
+- `scripts/build.mjs <spec.json> <out.html> [--theme <name>]`: validates ids and anchors, then inlines everything (engine, base style, theme style, spec) into one HTML file
 - `scripts/export.mjs <out.html> <out.png|.mp4|.gif|.mmd|.md> … [--seconds N] [--scale K]`: exports a built diagram to other formats. See §6
 - `scripts/check.mjs <out.html> [shot.png]`: headless Chrome self-check plus a screenshot. Exit code 1 means there are layout issues
 - `references/spec.md`: the complete spec schema. **Read it before writing a spec.**
-- `references/style.md`: the visual style, for reference only. The engine already implements it
+- `references/style.md`: the visual style of each theme, for reference only. The engine and `assets/themes/*.css` already implement them
 - `examples/`: `rea.json` (layered system read from a repo: caller → entry → core group → providers → shared base, typed `flows`, a `log.live` trace), `plausible.json` (dual pipeline read from a repo: write and read lanes as groups meeting at a shared store, an in-memory state band between them, a background band, width 1180, typed `flows`), `elephant-goldfish.json` (process with loops from an article: phase columns, containment groups, a central artifact band, typed `flows`, a `log.live` trace with per-edge `log` text). They show engine features (rail, rows, pipelines, fan-outs, edge rails, log), not a layout to copy
 
 ## 1. Get the source
@@ -85,9 +85,31 @@ The canvas is 1080 wide (set `width` up to 1280 for wide pipelines). The header 
 
 ## 4. Build → check → look → fix
 
+**Pick the theme.** The theme changes only the look; the spec, layout and checks are the same. Use the user's words; with no style named, use `terminal` and leave `theme` out of the spec. Write the choice into the spec as `"theme": "<name>"` so rebuilds keep it.
+
+| user says | theme | name (zh / en) | look |
+|---|---|---|---|
+| nothing / 终端 / 暗色 / terminal | `terminal` | 暗夜终端 / Night Terminal | dark terminal schematic (the default) |
+| 蓝图 / 晒图 / blueprint | `blueprint` | 晒图蓝图 / Blueprint | white ink on blueprint blue, grid, framed sheet |
+| 工程图纸 / 制图 / 技术手册 / 纸质 / drafting / technical drawing | `drafting` | 牛皮纸制图 / Drafting Paper | ink on drafting paper, serif type, numbered item balloons |
+| 手绘 / 白板 / 草图 / 随手画 / whiteboard / sketch / hand-drawn | `whiteboard` | 白板手绘 / Whiteboard Sketch | wobbly marker outlines, hatched fills |
+| 粗野 / 醒目 / 海报感 / 撞色 / brutalism / bold | `brutalism` | 粗野撞色 / Bold Brutal | thick black outlines, hard shadows, loud fills |
+| 复古 / CRT / 荧光绿 / 黑客 / retro terminal | `crt` | 荧光终端 / Phosphor CRT | phosphor glow, scanlines |
+| 简洁 / 浅色 / 产品文档 / SaaS / 卡片 / clean / light | `saas` | 柔光卡片 / Soft Cards | white rounded cards, soft shadows, pill labels |
+| 3D / 等距 / 立体 / 沙盘 / isometric | `isometric` | 等距沙盘 / Iso Sandbox | extruded blocks on a tilted floor |
+
+The user may also name a theme by its name (e.g. 柔光卡片, Soft Cards); map it to the id. When delivering, mention the theme by its name in the user's language.
+
+Theme notes:
+- `isometric` tilts the whole floor after layout, so text lies on the floor and the canvas grows wider than `width` (about 1.5×). It reads best with ≤ 12 nodes and short lines; for dense diagrams suggest another theme. Header and log stay upright.
+- `whiteboard` and `drafting` use proportional handwriting or serif fonts; `brutalism` uses heavier borders and type. If one of them reports overflow that `terminal` did not, raise `h` or shorten the line.
+- Light themes (`drafting`, `whiteboard`, `brutalism`, `saas`, `isometric`) use deeper inks for the same palette names, so the colors in the spec keep their meaning.
+
 ```bash
 node $SK/scripts/build.mjs <dir>/<slug>.spec.json <dir>/<slug>.html
 ```
+
+`--theme <name>` overrides the spec's theme for one build, e.g. to preview a few looks side by side.
 
 ```bash
 node $SK/scripts/check.mjs <dir>/<slug>.html <tmp>/<slug>.png
@@ -134,4 +156,4 @@ When sending results, send the image or video file itself (e.g. with the file-se
 
 ## Editing an existing diagram
 
-Edit the `.spec.json`, then rebuild and recheck. Never hand-edit the built HTML, because the next build overwrites it. To update the engine or style for every diagram, edit `assets/engine.js` or `assets/style.css`, then rebuild every file in `examples/` and confirm each still checks clean. After an animation change, export an MP4 and confirm the seam PSNR stays high.
+Edit the `.spec.json`, then rebuild and recheck. Never hand-edit the built HTML, because the next build overwrites it. To switch the style of an existing diagram, set `theme` in its spec (or pass `--theme`), rebuild, recheck and look again; nothing else in the spec needs to change. To update the engine or a style for every diagram, edit `assets/engine.js`, `assets/style.css` or `assets/themes/<name>.css`, then run `npm test` in the repository (it rebuilds every example in every theme and checks each one), or rebuild the examples by hand and confirm each still checks clean. After an animation change, export an MP4 and confirm the seam PSNR stays high.

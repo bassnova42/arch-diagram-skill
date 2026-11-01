@@ -1,0 +1,35 @@
+/* blueprint: white ink on blueprint blue, drafting grid, double frame, corner registration marks */
+:root {
+  --bg: #1b4c8f;
+  --panel: #1d5296;
+  --text: #e3efff;
+  --head: #ffffff;
+  --dim: #a9c7ec;
+  --faint: #6f98cc;
+  --cyan: #7ff0ff;
+  --blue: #a8d0ff;
+  --green: #a8f0b8;
+  --purple: #d4bcff;
+  --amber: #ffd98a;
+  --orange: #ffbf80;
+  --red: #ff9b94;
+  --flash: #2a62ab;
+}
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .15) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .06) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+}
+/* double drawing frame inside the canvas margin */
+/* drawn on #fit, outside the canvas, inside the page padding */
+#fit { outline: 2px solid var(--text); outline-offset: 12px; box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--dim); }
+#head .t { letter-spacing: 2px; }
+#head .rule { border-top-style: solid; border-color: var(--faint); }
+.box { background: var(--panel); }
+/* the engine draws registration crosses on every box corner (they show outside the opaque box) */
+.lbl { font-style: italic; }
+.group .glg, .st, #log .legend { letter-spacing: .5px; }

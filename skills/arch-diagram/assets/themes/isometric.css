@@ -1,0 +1,50 @@
+/* isometric: the diagram lies on an isometric floor grid and every box is an extruded block.
+   The engine applies the floor transform after layout and self-check, and keeps header and log upright. */
+:root {
+  --bg: #eef3fb;
+  --panel: #ffffff;
+  --text: #2a3756;
+  --head: #16213a;
+  --dim: #5d6b88;
+  --faint: #b4c0d4;
+  --blue: #3b6fe0;
+  --cyan: #0e9fb0;
+  --green: #1f9d55;
+  --amber: #d98a0b;
+  --purple: #7c4ddb;
+  --red: #e0413a;
+  --orange: #f07a1a;
+  --flash: #dfe8f7;
+}
+body, .lbl {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+html, body { background: linear-gradient(#f3f6fc, #dde6f3) fixed; }
+#head .t { font-size: 17px; }
+#head .rule { border-top: 1px solid #d4dcea; }
+#isoWrap { position: relative; overflow: hidden; }
+#isoWrap > #stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#isoFoot #log { position: relative; margin: 24px 16px 0; border-radius: 10px; background: rgba(255, 255, 255, .7); border-color: #d4dcea; }
+#isoFoot #status { position: relative; margin: 20px 16px 0; }
+#stage.iso {
+  background-image: linear-gradient(#c9d4e6 1px, transparent 1px), linear-gradient(90deg, #c9d4e6 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.box {
+  --x: color-mix(in srgb, var(--c) 62%, #1a2440);
+  background: color-mix(in srgb, var(--c) 24%, #fff);
+  border: 1.5px solid color-mix(in srgb, var(--c) 75%, #16213a);
+  /* extrusion: a stack of 1px offsets reads as the block's side faces once the floor is tilted */
+  box-shadow: 1px 1px 0 var(--x), 2px 2px 0 var(--x), 3px 3px 0 var(--x), 4px 4px 0 var(--x), 5px 5px 0 var(--x),
+              6px 6px 0 var(--x), 7px 7px 0 var(--x), 8px 8px 0 var(--x), 9px 9px 0 var(--x), 10px 10px 0 var(--x),
+              16px 16px 12px rgba(22, 33, 58, .22);
+}
+.box:hover { background: color-mix(in srgb, var(--c) 36%, #fff);
+  box-shadow: 1px 1px 0 var(--x), 2px 2px 0 var(--x), 3px 3px 0 var(--x), 4px 4px 0 var(--x), 5px 5px 0 var(--x),
+              6px 6px 0 var(--x), 7px 7px 0 var(--x), 8px 8px 0 var(--x), 9px 9px 0 var(--x), 10px 10px 0 var(--x),
+              18px 18px 14px rgba(22, 33, 58, .3); }
+.ttl { font-weight: 700; }
+.group { border: 1.5px dashed var(--c); background: color-mix(in srgb, var(--c) 7%, transparent); }
+.group.solid { border-style: solid; }
+.chip { background: #fff; border-radius: 4px; }
+.st { border-radius: 999px; }

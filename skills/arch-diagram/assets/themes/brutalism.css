@@ -1,0 +1,48 @@
+/* brutalism: thick black outlines, hard offset shadows, loud flat fills, heavy type */
+:root {
+  --bg: #fff3d1;
+  --panel: #ffffff;
+  --text: #111111;
+  --head: #000000;
+  --dim: #3a3a3a;
+  --faint: #000000;
+  --blue: #3d6bff;
+  --cyan: #00a5b5;
+  --green: #1f9d3a;
+  --amber: #e09400;
+  --purple: #8b4dff;
+  --red: #e5281e;
+  --orange: #ff6a00;
+  --flash: #ffe066;
+}
+body, .lbl {
+  font-family: "Inter", "Helvetica Neue", "Arial", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+body { font-weight: 500; }
+.lbl { font-weight: 800; }
+#head .t { display: inline-block; background: #000; color: var(--bg); padding: 3px 14px; font-size: 15px; font-weight: 900; }
+#head .rule { border-top: 3px solid #000; }
+.sq { border: 1.5px solid #000; }
+.box {
+  background: color-mix(in srgb, var(--c) 40%, #fff);
+  border: 2px solid #000; box-shadow: 6px 6px 0 #000;
+  padding: 8px 14px;   /* the heavier border and type need a little room back */
+}
+.box:hover { background: color-mix(in srgb, var(--c) 58%, #fff); box-shadow: 8px 8px 0 #000; }
+.ttl { font-weight: 900; color: #000; }
+.sub { color: #000; font-weight: 700; }
+.box .dim { color: rgba(0, 0, 0, .72); }
+.mods td.n { color: #000; font-weight: 700; }
+.hr { border-top: 2px solid #000; }
+.group { border: 2.5px dashed #000; }
+.group.solid { border-style: solid; }
+.group .glg { background: #000; color: var(--bg); font-weight: 800; }
+.chip, .tag { border: 1.5px solid #000; color: #000; background: #fff; font-weight: 700; }
+.chip.q { border-style: dashed; }
+.st { background: #fff; border: 2px solid #000; top: -12px; font-weight: 800; }
+.stl { border: 2px solid #000; }
+.rail .vl { border-left: 2px dashed #000; }
+.hl { background: #000; color: var(--bg); }
+#log { border: 2.5px solid #000; background: #fff; box-shadow: 6px 6px 0 #000; }
+#log .legend { background: #000; color: var(--bg); font-weight: 800; }
+.cursor { background: #000; }

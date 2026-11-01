@@ -1,0 +1,44 @@
+/* drafting: ink on aged drafting paper, serif type, framed sheet, numbered item balloons */
+:root {
+  --bg: #f1e9d4;
+  --panel: #f7f1e1;
+  --text: #2a2723;
+  --head: #1b1915;
+  --dim: #6d6658;
+  --faint: #a39a86;
+  --blue: #2f5d9e;
+  --cyan: #2b7f86;
+  --green: #3d7a3a;
+  --amber: #a8661b;
+  --purple: #6b4c9a;
+  --red: #b23a2a;
+  --orange: #c0612b;
+  --flash: #e6dcc0;
+}
+body, .lbl {
+  font-family: "Iowan Old Style", "Palatino", "Georgia", "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", serif;
+}
+html:lang(ja) body, html:lang(ja) .lbl { font-family: "Iowan Old Style", Georgia, "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; }
+html:lang(ko) body, html:lang(ko) .lbl { font-family: "Iowan Old Style", Georgia, "AppleMyungjo", "Batang", "Noto Serif KR", serif; }
+html:lang(th) body, html:lang(th) .lbl { font-family: "Iowan Old Style", Georgia, Thonburi, "Leelawadee UI", "Noto Serif Thai", serif; }
+body {
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .36 0 0 0 0 .24 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* sheet border: heavy outer line, hairline inner line */
+/* drawn on #fit, outside the canvas, inside the page padding */
+#fit { outline: 1.6px solid var(--text); outline-offset: 12px; box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--text); }
+#head .t { font-size: 16px; letter-spacing: 1px; }
+#head .rule { border-top: 1px solid var(--text); }
+.box { background: var(--panel); border-width: 1.2px; outline: .6px solid var(--c); outline-offset: -5px; }
+.box.dash, .box.is-none, .box.is-off, .box.is-dev { outline-style: dashed; }
+.box:hover { box-shadow: none; }
+/* item balloon on the top-left corner */
+.box[data-n]::after {
+  content: attr(data-n); position: absolute; left: -11px; top: -11px; width: 20px; height: 20px;
+  border: 1px solid var(--text); border-radius: 50%; background: var(--bg); color: var(--text);
+  font-size: 11px; line-height: 18px; text-align: center; font-style: italic;
+}
+.lbl { font-style: italic; }
+.chip, .tag { border-radius: 2px; }
+#log { border-color: var(--text); background: color-mix(in srgb, var(--panel) 60%, transparent); }

@@ -1,0 +1,35 @@
+/* crt: phosphor glow on a black-green tube, double-ruled boxes, scanlines and vignette */
+:root {
+  --bg: #04110a;
+  --panel: #061a10;
+  --text: #4dff88;
+  --head: #c8ffd9;
+  --dim: #2fae63;
+  --faint: #17643a;
+  --green: #4dff88;
+  --cyan: #66fcf1;
+  --blue: #7fb2ff;
+  --amber: #ffb347;
+  --purple: #d29bff;
+  --red: #ff5f56;
+  --orange: #ff9e3d;
+  --flash: #0d3a20;
+}
+body, .lbl { font-family: "IBM Plex Mono", "JetBrains Mono", "SF Mono", Menlo, "PingFang SC", "Microsoft YaHei", monospace; }
+body { text-shadow: 0 0 3px color-mix(in srgb, currentColor 55%, transparent); }
+#wires .wire { filter: drop-shadow(0 0 2.5px rgba(77, 255, 136, .6)); }
+#wires text { filter: drop-shadow(0 0 1.5px rgba(77, 255, 136, .35)); }
+#head .t::before { content: "> "; color: var(--dim); }
+.box {
+  outline: 1px solid color-mix(in srgb, var(--c) 45%, transparent); outline-offset: -5px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--c) 22%, transparent), inset 0 0 18px color-mix(in srgb, var(--c) 10%, transparent);
+}
+.box.dash, .box.is-none, .box.is-off, .box.is-dev { outline-style: dashed; }
+.box:hover { box-shadow: 0 0 20px color-mix(in srgb, var(--c) 40%, transparent), inset 0 0 24px color-mix(in srgb, var(--c) 18%, transparent); }
+/* scanlines + vignette over everything */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 10;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, .26) 0 2px, transparent 2px 4px),
+    radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, .55) 100%);
+}

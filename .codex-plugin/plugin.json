@@ -1,7 +1,7 @@
 {
   "name": "arch-diagram",
-  "version": "1.2.3",
-  "description": "Turn a GitHub repo, article, PDF or local project into an animated terminal-blueprint architecture diagram: HTML, PNG, looping MP4/GIF or Mermaid, with a live trace log.",
+  "version": "1.3.0",
+  "description": "Turn a GitHub repo, article, PDF or local project into an animated architecture diagram in eight themes (terminal, blueprint, drafting, whiteboard, brutalism, CRT, SaaS cards, isometric): HTML, PNG, looping MP4/GIF or Mermaid, with a live trace log.",
   "author": {
     "name": "bassnova42",
     "url": "https://github.com/bassnova42"
@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "RokoAI arch-diagram",
     "shortDescription": "Animated architecture diagrams from any repo or article",
-    "longDescription": "Reads a GitHub repo, article, PDF or local project and draws a dark terminal-blueprint architecture diagram with typed animated wires and a live trace log. Exports HTML, PNG, looping MP4/GIF and Mermaid. The diagram is written in the language of your prompt.",
+    "longDescription": "Reads a GitHub repo, article, PDF or local project and draws an architecture diagram with typed animated wires and a live trace log, in one of eight themes: dark terminal (default), blueprint, drafting paper, whiteboard sketch, brutalism, phosphor CRT, soft SaaS cards or isometric 3D. Exports HTML, PNG, looping MP4/GIF and Mermaid. The diagram is written in the language of your prompt.",
     "developerName": "bassnova42",
     "category": "Developer Tools",
     "capabilities": [
@@ -31,7 +31,8 @@
     "defaultPrompt": [
       "Draw the architecture of this repository.",
       "Turn this article into a flowchart and export a 20-second video.",
-      "Export the last diagram as a PNG and as Mermaid."
+      "Export the last diagram as a PNG and as Mermaid.",
+      "Redraw the last diagram in the whiteboard style."
     ]
   }
 }

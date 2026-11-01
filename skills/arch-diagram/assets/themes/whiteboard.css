@@ -1,0 +1,33 @@
+/* whiteboard: marker sketch on a white board; boxes are drawn by the engine as wobbly outlines with a hatched fill */
+:root {
+  --bg: #fcfbf7;
+  --panel: #fcfbf7;
+  --text: #2c2c2c;
+  --head: #1e1e1e;
+  --dim: #6b6b6b;
+  --faint: #a3a3a3;
+  --blue: #2f6fd6;
+  --cyan: #0e9aa7;
+  --green: #2f9e44;
+  --amber: #e08a00;
+  --purple: #7b4fd6;
+  --red: #e03131;
+  --orange: #f76707;
+  --flash: #fff1c2;
+}
+body, .lbl {
+  font-family: "Xiaolai SC", "LXGW WenKai", "Hannotate SC", "HanziPen SC", "Chalkboard SE", "Segoe Print", "Comic Sans MS", "Kaiti SC", "STKaiti", "KaiTi", cursive;
+}
+html:lang(ja) body, html:lang(ja) .lbl { font-family: "Klee", "Chalkboard SE", "Segoe Print", "Hiragino Maru Gothic ProN", "Yu Gothic", cursive; }
+html:lang(ko) body, html:lang(ko) .lbl { font-family: "Nanum Pen Script", "Chalkboard SE", "Segoe Print", "Apple SD Gothic Neo", cursive; }
+html:lang(th) body, html:lang(th) .lbl { font-family: "Chalkboard SE", "Segoe Print", Thonburi, "Leelawadee UI", cursive; }
+/* the real outlines live in the SVG layer; keep the borders for layout only */
+.box { background: transparent; border-color: transparent; }
+.box:hover { background: color-mix(in srgb, var(--c) 8%, transparent); box-shadow: none; }
+.group { border-color: transparent; }
+#head .t { display: inline-block; font-size: 16px; padding: 0 6px;
+  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--amber) 40%, transparent) 58%, color-mix(in srgb, var(--amber) 40%, transparent) 92%, transparent 92%); }
+#head .rule { border-top: 1.5px dashed var(--faint); }
+.chip, .tag { border-radius: 8px 3px 9px 4px; }
+#log { border: 1.5px dashed var(--faint); border-radius: 6px; }
+.cursor { background: var(--text); }

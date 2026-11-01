@@ -1,16 +1,21 @@
 #!/usr/bin/env node
-// usage: node build.mjs <spec.json> <out.html>
-// Inlines the engine, the stylesheet and the spec into one self-contained HTML file.
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+// usage: node build.mjs <spec.json> <out.html> [--theme <name>]
+// Inlines the engine, the stylesheet (plus the theme's) and the spec into one self-contained HTML file.
+// The theme comes from --theme, else spec.theme, else "terminal".
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const [specPath, outPath] = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const ti = argv.indexOf('--theme');
+const themeArg = ti >= 0 ? argv.splice(ti, 2)[1] : null;
+const [specPath, outPath] = argv;
 if (!specPath || !outPath) {
-  console.error('usage: node build.mjs <spec.json> <out.html>');
+  console.error('usage: node build.mjs <spec.json> <out.html> [--theme <name>]');
   process.exit(2);
 }
 const assets = join(dirname(fileURLToPath(import.meta.url)), '..', 'assets');
+const THEMES = ['terminal', ...readdirSync(join(assets, 'themes')).filter(f => f.endsWith('.css')).map(f => f.slice(0, -4)).sort()];
 const read = f => readFileSync(join(assets, f), 'utf8');
 
 let spec;
@@ -44,17 +49,25 @@ if (errs.length) {
   process.exit(1);
 }
 
+const theme = themeArg || spec.theme || 'terminal';
+if (!THEMES.includes(theme)) {
+  console.error(`✗ unknown theme "${theme}" — use one of: ${THEMES.join(' ')}`);
+  process.exit(1);
+}
+const themeCss = theme === 'terminal' ? '' : '\n/* theme: ' + theme + ' */\n' + read(join('themes', theme + '.css'));
+
 const plain = s => String(s || '').replace(/\{\w+:([^{}]*)\}/g, '$1');
 const escHtml = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
 const fill = {
   __LANG__: escHtml(spec.lang || 'zh-CN'),
+  __THEME__: theme,
   __TITLE__: escHtml(spec.pageTitle || plain(spec.title) || 'Architecture'),
-  __CSS__: read('style.css'),
+  __CSS__: read('style.css') + themeCss,
   // keep "</script>" inside strings from closing the tag early
   __SPEC__: JSON.stringify(spec, null, 1).replace(/</g, '\\u003c'),
   __ENGINE__: read('engine.js'),
 };
-const html = read('template.html').replace(/__LANG__|__TITLE__|__CSS__|__SPEC__|__ENGINE__/g, k => fill[k]);
+const html = read('template.html').replace(/__LANG__|__THEME__|__TITLE__|__CSS__|__SPEC__|__ENGINE__/g, k => fill[k]);
 mkdirSync(dirname(resolve(outPath)), { recursive: true });
 writeFileSync(outPath, html);
-console.log(`✓ built ${outPath} (${(html.length / 1024).toFixed(1)} KB, ${(spec.nodes || []).length} nodes, ${(spec.edges || []).length} edges)`);
+console.log(`✓ built ${outPath} (${theme} theme, ${(html.length / 1024).toFixed(1)} KB, ${(spec.nodes || []).length} nodes, ${(spec.edges || []).length} edges)`);

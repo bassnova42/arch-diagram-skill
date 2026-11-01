@@ -7,8 +7,8 @@
     {
       "name": "arch-diagram",
       "source": "./",
-      "version": "1.2.3",
-      "description": "Turn a GitHub repo, article, PDF or local project into an animated terminal-blueprint architecture diagram: HTML, PNG, looping MP4/GIF or Mermaid, with a live trace log."
+      "version": "1.3.0",
+      "description": "Turn a GitHub repo, article, PDF or local project into an animated architecture diagram in eight themes (terminal, blueprint, drafting, whiteboard, brutalism, CRT, SaaS cards, isometric): HTML, PNG, looping MP4/GIF or Mermaid, with a live trace log."
     }
   ]
 }

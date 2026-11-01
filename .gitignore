@@ -1,2 +1,4 @@
 .DS_Store
 *.check.png
+# local per-theme renders (docs/themes holds the published showcase)
+theme-showcase/

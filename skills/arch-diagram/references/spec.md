@@ -11,6 +11,7 @@ One JSON file describes the whole diagram. `scripts/build.mjs` turns it into a s
 | `title` | bold header line. Supports markup |
 | `subtitle` | optional dim line under the title |
 | `width` | canvas width, default 1080 |
+| `theme` | look of the page: `terminal` (default), `blueprint`, `drafting`, `whiteboard`, `brutalism`, `crt`, `saas`, `isometric`. Only the look changes; coordinates and checks stay the same. `build.mjs --theme` overrides it |
 | `layers` | `[{id, label, color}]`: the element *kinds*. Drives the color legend and each node's default color |
 | `flows` | `[{id, label, color, dash}]`: the wire *kinds*. Edges reference one with `flow`, and the header draws a flow legend. With flows declared, the generic sync/async legend is hidden |
 | `nodes` | boxes (see below) |

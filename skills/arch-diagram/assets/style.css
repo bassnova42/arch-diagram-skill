@@ -1,4 +1,5 @@
 :root {
+  /* terminal theme (default); assets/themes/<name>.css overrides these per theme */
   --bg: #0b0f14;
   --panel: #0e141b;
   --text: #c9d1d9;
@@ -101,7 +102,7 @@ svg#wires { position: absolute; left: 0; top: 0; overflow: visible; pointer-even
 #log .live { overflow: hidden; }
 #log .live .row { height: 20px; line-height: 20px; }
 #log .row.new { animation: flash 1s ease-out; }
-@keyframes flash { from { background: #1d2a1f; } to { background: transparent; } }
+@keyframes flash { from { background: var(--flash, #1d2a1f); } to { background: transparent; } }
 .livedot { color: var(--green); animation: pulse 1s ease-in-out infinite; }
 .cursor { display: inline-block; width: 9px; height: 15px; background: var(--green); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
