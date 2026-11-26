@@ -6,7 +6,7 @@
 
 **Claude Code** と **Codex** で使えます。
 
-GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを渡すと、Claude Code または Codex が構造を読み取り、アーキテクチャ図を描きます。デフォルトはダークな「ターミナル設計図」スタイルで、ほかに 7 つのスタイルも選べます（[スタイル](#スタイル)）。線の上をパケットが流れ、モジュール間でデータがやり取りされるたびに、下部のログに 1 行ずつリアルタイムで追加されます。
+GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを渡すと、Claude Code または Codex が構造を読み取り、アーキテクチャ図を描きます。デフォルトはダークな「ターミナル設計図」スタイルで、ほかに 8 つのスタイルも選べます（[スタイル](#スタイル)）。線の上をパケットが流れ、モジュール間でデータがやり取りされるたびに、下部のログに 1 行ずつリアルタイムで追加されます。
 
 **以下は、オープンソースプロジェクト [morluto/rea](https://github.com/morluto/rea) のアーキテクチャ図です。この Skill が GitHub リポジトリを読み取って自動生成しました：**
 
@@ -20,7 +20,7 @@ GitHub リポジトリ、技術記事、PDF、ローカルプロジェクトを�
 - **意味のある色分け**：ボックスは種類ごとに色分け。線はフローの種類（リクエスト、書き込み、コールバック、非同期など）で色と実線／破線を区別。グループ枠は包含関係を表します。
 - **ライブトレースログ**：パケットが線の終点に届くと、下部に `時刻 · 種類 · A → B · 説明` の 1 行が追加されます。
 - **セルフチェック**：ヘッドレス Chrome でボックスの重なり、文字のはみ出し、ボックスを貫く線、隠れたラベルを検出し、きれいになるまで Claude が修正します。
-- **8 つのスタイル**：ナイトターミナル、青焼き設計図、製図用紙、ホワイトボード手描き、ボールドブルータル、蛍光 CRT、ソフトカード、アイソ箱庭。一言で切り替えられます。
+- **9 つのスタイル**：ナイトターミナル、青焼き設計図、製図用紙、ホワイトボード手描き、ボールドブルータル、蛍光 CRT、ソフトカード、純白カード、アイソ箱庭。一言で切り替えられます。
 - **多彩な出力形式**：
   - インタラクティブな単一 HTML ファイル
   - PNG（2 倍解像度）
@@ -97,20 +97,21 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 
 ## スタイル
 
-デフォルトは **ナイトターミナル**（`terminal`）で、ほかに 7 つのスタイルがあります。依頼するときにスタイルを伝えるだけです。例：`設計図風に描いて`、`ホワイトボード手描き風で`、`3D アイソメトリックにして`。指定しなければデフォルトになります。
+デフォルトは **ナイトターミナル**（`terminal`）で、ほかに 8 つのスタイルがあります。依頼するときにスタイルを伝えるだけです。例：`設計図風に描いて`、`ホワイトボード手描き風で`、`3D アイソメトリックにして`。指定しなければデフォルトになります。
 
 - **見た目だけが変わる**：同じ spec がどのスタイルでも描けます。構造・文字・座標は変わらず、セルフチェックも同じです。既存の図も「ソフトカード風に変えて」の一言で描き直せます。
 - **色の意味は変わらない**：配色はスタイルごとに違いますが、青・シアン・緑・琥珀・紫が表す要素の種類は同じなので、凡例はそのまま読めます。
 - **すべての出力に対応**：HTML、PNG、MP4、GIF はどのスタイルでも書き出せます（Mermaid は Mermaid 自身がレイアウトするためスタイルなし）。
 
-同じ図（Elephant-Goldfish の作例）を 8 スタイルで並べたもの：
+同じ図（Elephant-Goldfish の作例）を 9 スタイルで並べたもの：
 
 | | |
 |---|---|
 | <img src="themes/terminal.jpg" width="420"><br>**ナイトターミナル（デフォルト）** · `terminal` | <img src="themes/blueprint.jpg" width="420"><br>**青焼き設計図** · `blueprint` |
 | <img src="themes/drafting.jpg" width="420"><br>**製図用紙** · `drafting` | <img src="themes/whiteboard.jpg" width="420"><br>**ホワイトボード手描き** · `whiteboard` |
 | <img src="themes/brutalism.jpg" width="420"><br>**ボールドブルータル** · `brutalism` | <img src="themes/crt.jpg" width="420"><br>**蛍光 CRT** · `crt` |
-| <img src="themes/saas.jpg" width="420"><br>**ソフトカード** · `saas` | <img src="themes/isometric.jpg" width="420"><br>**アイソ箱庭** · `isometric` |
+| <img src="themes/saas.jpg" width="420"><br>**ソフトカード** · `saas` | <img src="themes/violet.jpg" width="420"><br>**純白カード** · `violet` |
+| <img src="themes/isometric.jpg" width="420"><br>**アイソ箱庭** · `isometric` | |
 
 コマンドラインでは `--theme` を付けるか、spec に `"theme": "blueprint"` と書きます：
 
@@ -118,7 +119,7 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 ```
 
-以下、新しい 7 スタイルの詳細です。作例はすべて [morluto/rea](https://github.com/morluto/rea) の図（このページ冒頭と同じ spec）です。
+以下、新しい 8 スタイルの詳細です。作例はすべて [morluto/rea](https://github.com/morluto/rea) の図（このページ冒頭と同じ spec）です。
 
 ### 青焼き設計図 · `blueprint`
 
@@ -180,6 +181,16 @@ npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 - **頼み方**: `シンプルで明るく` · `プロダクトドキュメント風` · `SaaS 風`
 
 [▶ 20 秒の動画（MP4）](themes/saas.mp4)
+
+### 純白カード · `violet`
+
+![純白カード](themes/violet.gif)
+
+- **見た目**: 純白のキャンバスに白いカードを置き、副ラベルをタイトルの上に表示します。紫の焦点カードはアクセントの枠線と淡い塗りで目立たせます。カードの枠線は中立のまま、要素色はラベル、凡例、線、`emphasis` 指定のカードで示します。線は細く、分岐は滑らかな曲線です。
+- **向いている用途**: プロダクトドキュメント、設計メモ、技術ブログ。静かな焦点カードと、ソフトカードより編集風のリズムが欲しい場面。
+- **頼み方**: `純白カード` · `白いカード` · `violet`
+
+[▶ 20 秒の動画（MP4）](themes/violet.mp4)
 
 ### アイソ箱庭 · `isometric`
 

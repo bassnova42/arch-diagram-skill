@@ -1,6 +1,6 @@
 ---
 name: arch-diagram
-description: Turn any source — a GitHub repo, a technical article or blog URL, a PDF, a local project folder, or pasted notes — into a dense architecture diagram with a structure fitted to the content, drawn in one of eight themes (dark "terminal" by default; blueprint, drafting, whiteboard, brutalism, crt, saas, isometric), colors by element kind and typed animated wires. Outputs an interactive HTML page plus, on request, a PNG image, an MP4 video of any length, an animated GIF, or an editable Mermaid flowchart. Use when the user says 架构图 / 画架构 / 系统架构 / 流程图 / 画一下这个仓库 / 这篇文章画成图 / 输出成图片 / 输出成视频 / 动图 / mermaid / architecture diagram / system diagram / draw how X works, gives a repo or article and wants it visualized, asks to turn an existing diagram into an image, video, GIF or Mermaid, asks for a style (蓝图 / 工程图纸 / 手绘 / 白板 / 粗野 / 复古终端 / CRT / 简洁浅色 / SaaS / 3D / 等距 / 换个风格 / blueprint / hand-drawn / isometric / theme), or runs /arch-diagram.
+description: Turn any source — a GitHub repo, a technical article or blog URL, a PDF, a local project folder, or pasted notes — into a dense architecture diagram with a structure fitted to the content, drawn in one of nine themes (dark "terminal" by default; blueprint, drafting, whiteboard, brutalism, crt, saas, violet, isometric), colors by element kind and typed animated wires. Outputs an interactive HTML page plus, on request, a PNG image, an MP4 video of any length, an animated GIF, or an editable Mermaid flowchart. Use when the user says 架构图 / 画架构 / 系统架构 / 流程图 / 画一下这个仓库 / 这篇文章画成图 / 输出成图片 / 输出成视频 / 动图 / mermaid / architecture diagram / system diagram / draw how X works, gives a repo or article and wants it visualized, asks to turn an existing diagram into an image, video, GIF or Mermaid, asks for a style (蓝图 / 工程图纸 / 手绘 / 白板 / 粗野 / 复古终端 / CRT / 简洁浅色 / SaaS / 纯白 / 白色卡片 / 卡片 / 3D / 等距 / 换个风格 / blueprint / hand-drawn / isometric / violet / pure white / theme), or runs /arch-diagram.
 ---
 
 # arch-diagram
@@ -96,6 +96,7 @@ The canvas is 1080 wide (set `width` up to 1280 for wide pipelines). The header 
 | 粗野 / 醒目 / 海报感 / 撞色 / brutalism / bold | `brutalism` | 粗野撞色 / Bold Brutal | thick black outlines, hard shadows, loud fills |
 | 复古 / CRT / 荧光绿 / 黑客 / retro terminal | `crt` | 荧光终端 / Phosphor CRT | phosphor glow, scanlines |
 | 简洁 / 浅色 / 产品文档 / SaaS / 卡片 / clean / light | `saas` | 柔光卡片 / Soft Cards | white rounded cards, soft shadows, pill labels |
+| 纯白 / 白底 / 白色卡片 / 卡片 / violet / pure white / cards / pstack | `violet` | 纯白卡片 / Pure White Cards | white canvas, rounded cards, violet accent, curved mono wires |
 | 3D / 等距 / 立体 / 沙盘 / isometric | `isometric` | 等距沙盘 / Iso Sandbox | extruded blocks on a tilted floor |
 
 The user may also name a theme by its name (e.g. 柔光卡片, Soft Cards); map it to the id. When delivering, mention the theme by its name in the user's language.
@@ -103,7 +104,8 @@ The user may also name a theme by its name (e.g. 柔光卡片, Soft Cards); map 
 Theme notes:
 - `isometric` tilts the whole floor after layout, so text lies on the floor and the canvas grows wider than `width` (about 1.5×). It reads best with ≤ 12 nodes and short lines; for dense diagrams suggest another theme. Header and log stay upright.
 - `whiteboard` and `drafting` use proportional handwriting or serif fonts; `brutalism` uses heavier borders and type. If one of them reports overflow that `terminal` did not, raise `h` or shorten the line.
-- Light themes (`drafting`, `whiteboard`, `brutalism`, `saas`, `isometric`) use deeper inks for the same palette names, so the colors in the spec keep their meaning.
+- `violet` puts the sub label above the title, uses a white canvas, neutral card outlines and curved wire fan-outs. Mark one node with `"emphasis": true` for its tinted focal card.
+- Light themes (`drafting`, `whiteboard`, `brutalism`, `saas`, `violet`, `isometric`) use deeper inks for the same palette names, so the colors in the spec keep their meaning.
 
 ```bash
 node $SK/scripts/build.mjs <dir>/<slug>.spec.json <dir>/<slug>.html

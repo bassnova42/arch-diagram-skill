@@ -10,7 +10,7 @@
   if (LOOP) document.documentElement.classList.add('loop');
   // theme: colors, fonts and box looks come from the theme stylesheet; wire drawing differs per theme here
   const THEME = document.documentElement.dataset.theme || 'terminal';
-  const TH = Object.assign({ ww: 1.4, dash: '5 4', cap: 'butt', join: 'miter', arrow: 9.8, arrowShape: 'solid', round: 0,
+  const TH = Object.assign({ ww: 1.4, dash: '5 4', cap: 'butt', join: 'miter', arrow: 9.8, arrowShape: 'solid', arrowStroke: 1.5, round: 0,
     sketch: false, labelBox: null, labelColor: 'dim', startDot: false, iso: false }, {
     blueprint:  { ww: 1.3, dash: '12 6', marks: true },
     drafting:   { ww: 1.1, dash: '10 3 2 3', startDot: true },
@@ -18,6 +18,7 @@
     brutalism:  { ww: 3, dash: '12 6', arrow: 15, labelBox: 'brutal', labelColor: 'text' },
     crt:        { ww: 1.6, dash: '4 5', join: 'round' },
     saas:       { ww: 1.8, dash: '0 6', cap: 'round', join: 'round', round: 14, labelBox: 'pill' },
+    violet:     { ww: 1.4, dash: '0 6', cap: 'round', join: 'round', arrow: 7, arrowShape: 'open', arrowStroke: 1.6, round: 18, curve: true, dot: 3, dotEmpty: 3, labelColor: 'dim' },
     isometric:  { ww: 2, dash: '6 3', join: 'round', round: 8, labelBox: 'halo', iso: true },
   }[THEME] || {});
   // every dash period divides 18 so the .flow animation (dashoffset 18 → 0) loops without a jump
@@ -128,7 +129,7 @@
   const rails = [];
   let itemNo = 0;
   for (const n of S.nodes || []) {
-    const d = el('div', 'box' + (n.dashed ? ' dash' : '') + (n.status ? ' is-' + n.status : '') + (n.kind === 'rail' ? ' rail' : ''), null, stage);
+    const d = el('div', 'box' + (n.dashed ? ' dash' : '') + (n.status ? ' is-' + n.status : '') + (n.kind === 'rail' ? ' rail' : '') + (n.emphasis ? ' emph' : ''), null, stage);
     d.id = n.id;
     if (n.kind !== 'rail') d.dataset.n = ++itemNo;   // item number, shown as a balloon by the drafting theme
     tint(d, n.color || layerColor(n.layer)); place(d, n);
@@ -257,7 +258,7 @@
     const p = document.createElementNS(NS, 'path');
     if (TH.arrowShape === 'open') {
       p.setAttribute('d', 'M1,1.5 L9,5 L1,8.5'); p.setAttribute('fill', 'none'); p.setAttribute('stroke', cssv(k));
-      p.setAttribute('stroke-width', 1.5); p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round');
+      p.setAttribute('stroke-width', TH.arrowStroke); p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round');
     } else { p.setAttribute('d', 'M0,0 L10,5 L0,10 z'); p.setAttribute('fill', cssv(k)); }
     m.appendChild(p); defs.appendChild(m);
   }
@@ -341,6 +342,13 @@
   }
   function wirePath(pts) {
     if (TH.sketch) return wobble(pts);
+    if (TH.curve && pts.length === 4) {
+      const [a, b, c, d] = pts;
+      const horizontal = Math.abs(a[1] - b[1]) < .5 && Math.abs(c[1] - d[1]) < .5;
+      const vertical = Math.abs(a[0] - b[0]) < .5 && Math.abs(c[0] - d[0]) < .5;
+      if (horizontal) return `M${a} C${b[0]},${a[1]} ${c[0]},${d[1]} ${d}`;
+      if (vertical) return `M${a} C${a[0]},${b[1]} ${d[0]},${c[1]} ${d}`;
+    }
     if (!TH.round) return 'M' + pts.map(q => q.join(',')).join(' L');
     let d = `M${pts[0]}`;
     for (let i = 1; i < pts.length - 1; i++) {
@@ -382,19 +390,18 @@
   }
   function dot(x, y, k, hollow) {
     const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', (hollow ? 4 : 3.5) * Math.max(1, TH.ww / 2));
+    c.setAttribute('cx', x); c.setAttribute('cy', y);
+    c.setAttribute('r', (hollow ? (TH.dotEmpty || 4) : (TH.dot || 3.5)) * Math.max(1, TH.ww / 2));
     c.setAttribute('fill', hollow ? cssv('bg') : cssv(k));
     c.setAttribute('stroke', cssv(k)); c.setAttribute('stroke-width', 1.5);
     svg.appendChild(c);
   }
   // a small glowing packet travelling along each wire
-  function packet(pts, k) {
-    let len = 0;
-    for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+  function packet(pathD, k, len) {
     const c = document.createElementNS(NS, 'circle');
     c.setAttribute('r', 2.6 * Math.max(1, TH.ww / 2)); c.setAttribute('fill', cssv(k)); c.style.filter = `drop-shadow(0 0 3px ${cssv(k)})`;
     const m = document.createElementNS(NS, 'animateMotion');
-    m.setAttribute('path', 'M' + pts.map(q => q.join(',')).join(' L'));
+    m.setAttribute('path', pathD);
     let dur = Math.max(0.8, len / 110);
     if (LOOP) dur = LOOP / Math.max(1, Math.round(LOOP / dur));
     m.setAttribute('dur', dur.toFixed(4) + 's');
@@ -542,14 +549,15 @@
     const pts = route(a, z, e).map(p => [Math.round(p[0] * 2) / 2, Math.round(p[1] * 2) / 2]);
     const k = col(e.color || 'dim');
     const p = document.createElementNS(NS, 'path');
-    p.setAttribute('d', wirePath(pts)); p.setAttribute('class', 'wire');
+    const pathD = wirePath(pts);
+    p.setAttribute('d', pathD); p.setAttribute('class', 'wire');
     p.setAttribute('fill', 'none'); p.setAttribute('stroke', cssv(k)); p.setAttribute('stroke-width', TH.ww);
     p.setAttribute('stroke-linecap', TH.cap); p.setAttribute('stroke-linejoin', TH.join);
     if (e.dash) { p.setAttribute('stroke-dasharray', TH.dash); if (!STILL) p.classList.add('flow'); }
     if (e.arrow !== false) { marker(k); p.setAttribute('marker-end', `url(#a-${k})`); }
     if (e.arrow === 'both') p.setAttribute('marker-start', `url(#a-${k})`);
     svg.appendChild(p);
-    const timing = !STILL && e.packet !== false ? packet(pts, k) : null;
+    const timing = !STILL && e.packet !== false ? packet(pathD, k, p.getTotalLength()) : null;
     if (LIVE) liveEntry(e, k, timing);
     if (e.joint && pts.length > 2) dot(pts[pts.length - 2][0], pts[pts.length - 2][1], k, e.joint === 'hollow');
     if (e.startDot || (TH.startDot && !Array.isArray(e.from) && e.startDot !== false)) dot(pts[0][0], pts[0][1], k, e.startDot === 'hollow');

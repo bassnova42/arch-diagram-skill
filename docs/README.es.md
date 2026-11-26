@@ -6,7 +6,7 @@
 
 Funciona con **Claude Code** y **Codex**.
 
-Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local. Claude Code o Codex entiende la estructura y dibuja un diagrama de arquitectura: por defecto oscuro, estilo "plano de terminal", o en cualquiera de otros siete estilos (ver [Estilos](#estilos)). Por los cables circulan paquetes animados, y el log inferior añade una línea en tiempo real cada vez que dos módulos intercambian datos.
+Dale un repositorio de GitHub, un artículo técnico, un PDF o un proyecto local. Claude Code o Codex entiende la estructura y dibuja un diagrama de arquitectura: por defecto oscuro, estilo "plano de terminal", o en cualquiera de otros ocho estilos (ver [Estilos](#estilos)). Por los cables circulan paquetes animados, y el log inferior añade una línea en tiempo real cada vez que dos módulos intercambian datos.
 
 **Abajo: la arquitectura del proyecto de código abierto [morluto/rea](https://github.com/morluto/rea), generada por esta skill a partir de su repositorio de GitHub:**
 
@@ -20,7 +20,7 @@ Más ejemplos (un artículo, un repositorio de GitHub, un documento de requisito
 - **Colores con significado**: las cajas se colorean por tipo; los cables se distinguen por color y trazo según el tipo de flujo (petición, escritura, respuesta, asíncrono…); los marcos de grupo indican contención.
 - **Log de trazas en vivo**: cuando un paquete llega al final de un cable, se añade abajo una línea `tiempo · tipo · A → B · detalle`.
 - **Autocomprobación**: Chrome sin interfaz detecta cajas superpuestas, texto desbordado, cables que atraviesan cajas y etiquetas tapadas, y Claude lo corrige hasta que el diseño queda limpio.
-- **Ocho estilos**: Terminal nocturna, Plano azul, Papel de dibujo, Pizarra a mano, Brutal atrevido, CRT fósforo, Tarjetas suaves y Maqueta isométrica, con una sola frase.
+- **Nueve estilos**: Terminal nocturna, Plano azul, Papel de dibujo, Pizarra a mano, Brutal atrevido, CRT fósforo, Tarjetas suaves, Tarjetas blancas y Maqueta isométrica, con una sola frase.
 - **Muchos formatos de salida**:
   - HTML interactivo en un solo archivo
   - PNG (resolución 2×)
@@ -98,20 +98,21 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 
 ## Estilos
 
-El estilo por defecto es **Terminal nocturna** (`terminal`), y hay siete más. Basta con nombrar el estilo en tu petición, por ejemplo `dibújalo como un plano azul`, `usa el estilo pizarra`, `hazlo isométrico`; si no indicas ninguno, se usa el de por defecto.
+El estilo por defecto es **Terminal nocturna** (`terminal`), y hay ocho más. Basta con nombrar el estilo en tu petición, por ejemplo `dibújalo como un plano azul`, `usa el estilo pizarra`, `hazlo isométrico`; si no indicas ninguno, se usa el de por defecto.
 
 - **Solo cambia el aspecto**: el mismo spec se dibuja en todos los estilos. Cambiar de estilo no toca la estructura, los textos ni las coordenadas, y la autocomprobación es la misma. Un diagrama existente se redibuja con una frase: "pásalo a Tarjetas suaves".
 - **Los colores conservan su significado**: cada estilo tiene su paleta, pero azul, cian, verde, ámbar y morado siguen marcando los mismos tipos de elemento, así que la leyenda se lee igual.
 - **Todas las salidas funcionan**: HTML, PNG, MP4 y GIF se exportan en cualquier estilo (Mermaid se maqueta solo y no tiene estilo).
 
-El mismo diagrama (el ejemplo Elephant-Goldfish) en los ocho estilos:
+El mismo diagrama (el ejemplo Elephant-Goldfish) en los nueve estilos:
 
 | | |
 |---|---|
 | <img src="themes/terminal.jpg" width="420"><br>**Terminal nocturna (por defecto)** · `terminal` | <img src="themes/blueprint.jpg" width="420"><br>**Plano azul** · `blueprint` |
 | <img src="themes/drafting.jpg" width="420"><br>**Papel de dibujo** · `drafting` | <img src="themes/whiteboard.jpg" width="420"><br>**Pizarra a mano** · `whiteboard` |
 | <img src="themes/brutalism.jpg" width="420"><br>**Brutal atrevido** · `brutalism` | <img src="themes/crt.jpg" width="420"><br>**CRT fósforo** · `crt` |
-| <img src="themes/saas.jpg" width="420"><br>**Tarjetas suaves** · `saas` | <img src="themes/isometric.jpg" width="420"><br>**Maqueta isométrica** · `isometric` |
+| <img src="themes/saas.jpg" width="420"><br>**Tarjetas suaves** · `saas` | <img src="themes/violet.jpg" width="420"><br>**Tarjetas blancas** · `violet` |
+| <img src="themes/isometric.jpg" width="420"><br>**Maqueta isométrica** · `isometric` | |
 
 En la línea de comandos usa `--theme`, o pon `"theme": "blueprint"` en el spec:
 
@@ -119,7 +120,7 @@ En la línea de comandos usa `--theme`, o pon `"theme": "blueprint"` en el spec:
 npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 ```
 
-Los siete estilos nuevos en detalle. Cada ejemplo es el diagrama de [morluto/rea](https://github.com/morluto/rea), el mismo spec que el del principio de esta página.
+Los ocho estilos nuevos en detalle. Cada ejemplo es el diagrama de [morluto/rea](https://github.com/morluto/rea), el mismo spec que el del principio de esta página.
 
 ### Plano azul · `blueprint`
 
@@ -181,6 +182,16 @@ Los siete estilos nuevos en detalle. Cada ejemplo es el diagrama de [morluto/rea
 - **Cómo pedirlo**: `estilo claro y limpio` · `estilo documentación de producto` · `estilo SaaS`
 
 [▶ Vídeo de 20 segundos (MP4)](themes/saas.mp4)
+
+### Tarjetas blancas · `violet`
+
+![Tarjetas blancas](themes/violet.gif)
+
+- **Aspecto**: Un lienzo blanco puro con tarjetas blancas, etiquetas sobre los títulos y una tarjeta focal violeta con borde de acento y relleno pálido. Los bordes neutros dejan tranquila la página; los colores semánticos viven en las etiquetas, la leyenda, los cables y los nodos con `emphasis`. Los cables son finos y se curvan en los abanicos.
+- **Ideal para**: Documentación de producto, notas de diseño y blogs técnicos que necesitan una tarjeta focal discreta y un ritmo editorial más marcado que Tarjetas suaves.
+- **Cómo pedirlo**: `tarjetas blancas` · `tarjetas` · `blanco` · `violet`
+
+[▶ Vídeo de 20 segundos (MP4)](themes/violet.mp4)
 
 ### Maqueta isométrica · `isometric`
 

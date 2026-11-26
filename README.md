@@ -6,7 +6,7 @@
 
 适用于 **Claude Code** 和 **Codex**。
 
-给它一个 GitHub 仓库、一篇技术文章、一份 PDF 或本地项目，Claude Code 或 Codex 会读懂结构，画出一张架构图。默认是深色"终端蓝图"风格，另有 7 种风格可选（见 [风格](#风格)）。连线上有流动的光点，底部的 log 会在模块之间交换数据时实时加一行。
+给它一个 GitHub 仓库、一篇技术文章、一份 PDF 或本地项目，Claude Code 或 Codex 会读懂结构，画出一张架构图。默认是深色"终端蓝图"风格，另有 8 种风格可选（见 [风格](#风格)）。连线上有流动的光点，底部的 log 会在模块之间交换数据时实时加一行。
 
 **下面是开源项目 [morluto/rea](https://github.com/morluto/rea) 的架构图，由这个 Skill 读取它的 GitHub 仓库自动生成：**
 
@@ -20,7 +20,7 @@
 - **颜色有含义**：元素按种类上色；连线按流向类型（请求、写入、回传、异步……）区分颜色和虚实；分组框表示包含关系。
 - **实时 trace log**：光点到达终点时，底部追加一行 `时间 · 类型 · A → B · 说明`。
 - **自检**：用无头 Chrome 检查元素重叠、文字溢出、连线穿过方框、标签被遮挡，有问题就改到干净为止。
-- **8 种风格**：暗夜终端、晒图蓝图、牛皮纸制图、白板手绘、粗野撞色、荧光终端、柔光卡片、等距沙盘，说一句就能切换。
+- **9 种风格**：暗夜终端、晒图蓝图、牛皮纸制图、白板手绘、粗野撞色、荧光终端、柔光卡片、纯白卡片、等距沙盘，说一句就能切换。
 - **多种输出**：
   - 可交互的单文件 HTML
   - PNG（2 倍分辨率）
@@ -97,20 +97,21 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 
 ## 风格
 
-默认是 **暗夜终端**（`terminal`）风格，另外还有 7 种风格。提要求时说出风格就行，比如 `画成蓝图风格`、`用手绘白板风格`、`换成 3D 等距`；不说就用默认风格。
+默认是 **暗夜终端**（`terminal`）风格，另外还有 8 种风格。提要求时说出风格就行，比如 `画成蓝图风格`、`用手绘白板风格`、`换成 3D 等距`；不说就用默认风格。
 
 - **只换外观，不改内容**：同一份 spec，换风格不用动结构、文字和坐标，自检规则也一样。已有的图说一句"换成柔光卡片风格"就能重画。
 - **颜色含义不变**：每种风格都有自己的配色，但蓝、青、绿、琥珀、紫这些颜色名在每种风格里都对应同一类元素，图例照样能看懂。
 - **所有输出都支持**：HTML、PNG、MP4、GIF 在每种风格下都能导出（Mermaid 由 Mermaid 自己排版，不带风格）。
 
-同一张图（Elephant-Goldfish 示例）的 8 种风格一览：
+同一张图（Elephant-Goldfish 示例）的 9 种风格一览：
 
 | | |
 |---|---|
 | <img src="docs/themes/terminal.jpg" width="420"><br>**暗夜终端（默认）** · `terminal` | <img src="docs/themes/blueprint.jpg" width="420"><br>**晒图蓝图** · `blueprint` |
 | <img src="docs/themes/drafting.jpg" width="420"><br>**牛皮纸制图** · `drafting` | <img src="docs/themes/whiteboard.jpg" width="420"><br>**白板手绘** · `whiteboard` |
 | <img src="docs/themes/brutalism.jpg" width="420"><br>**粗野撞色** · `brutalism` | <img src="docs/themes/crt.jpg" width="420"><br>**荧光终端** · `crt` |
-| <img src="docs/themes/saas.jpg" width="420"><br>**柔光卡片** · `saas` | <img src="docs/themes/isometric.jpg" width="420"><br>**等距沙盘** · `isometric` |
+| <img src="docs/themes/saas.jpg" width="420"><br>**柔光卡片** · `saas` | <img src="docs/themes/violet.jpg" width="420"><br>**纯白卡片** · `violet` |
+| <img src="docs/themes/isometric.jpg" width="420"><br>**等距沙盘** · `isometric` | |
 
 命令行里用 `--theme` 指定，或者在 spec 里写 `"theme": "blueprint"`：
 
@@ -118,7 +119,7 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 ```
 
-下面逐个介绍新增的 7 种风格，示例都是 [morluto/rea](https://github.com/morluto/rea) 的架构图（和本页顶部那张同一份 spec）。
+下面逐个介绍新增的 8 种风格，示例都是 [morluto/rea](https://github.com/morluto/rea) 的架构图（和本页顶部那张同一份 spec）。
 
 ### 晒图蓝图 · `blueprint`
 
@@ -180,6 +181,16 @@ npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 - **这样说**：`简洁浅色风格` · `产品文档风格` · `SaaS 风格` · `卡片风格`
 
 [▶ 20 秒视频（MP4）](docs/themes/saas.mp4)
+
+### 纯白卡片 · `violet`
+
+![纯白卡片](docs/themes/violet.gif)
+
+- **外观**：纯白画布上的白色圆角卡片，卡片把次级标签放在标题上方，紫色焦点卡片用描边和浅紫底突出。卡片描边保持中性，元素颜色由标签、图例、连线和 `emphasis` 卡片承担；连线更清晰，分叉是平滑曲线。
+- **适合**：产品文档、设计说明、技术博客，以及需要一个安静焦点卡片和更明显编辑感的页面。
+- **这样说**：`纯白卡片` · `白色卡片` · `violet` · `pstack 风格`
+
+[▶ 20 秒视频（MP4）](docs/themes/violet.mp4)
 
 ### 等距沙盘 · `isometric`
 

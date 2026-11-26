@@ -1,6 +1,6 @@
 # Themes
 
-The engine draws the same spec in eight themes (`spec.theme` or `build.mjs --theme`). `terminal` is the original look described first; the others are summarized after it. Colors keep their names in every theme (blue, cyan, green, amber, purple, red), so the legend's meaning never changes.
+The engine draws the same spec in nine themes (`spec.theme` or `build.mjs --theme`). `terminal` is the original look described first; the others are summarized after it. Colors keep their names in every theme (blue, cyan, green, amber, purple, red), so the legend's meaning never changes.
 
 ## terminal (default)
 
@@ -22,4 +22,5 @@ Draw the diagram as a single HTML page in a dark "terminal blueprint" style, mat
 - **brutalism**: cream background (#fff3d1), 2px black outlines with 6px hard black shadows, flat fills mixed from the element color, heavy sans type, white boxed wire labels with black borders, thick wires.
 - **crt**: phosphor green on a black-green tube (#04110a). Glowing text and wires, a second inner rule in each box, scanlines and vignette over the page.
 - **saas**: light product-docs look (#f6f7fb with a dot grid). White cards with 14px corners, a colored top accent and soft shadows; rounded wire corners, dotted async wires, pill labels.
+- **violet**: a pure white canvas with 12px cards, neutral hairlines and a violet #5537eb accent. Monospace kickers sit above titles; wires are thin and curve at fan-outs, with open arrowheads. Set `emphasis: true` on a node for a tinted focal card. The quiet, editorial counterpart to `saas`.
 - **isometric**: the finished, checked layout is laid on an isometric floor grid; each box becomes a block extruded 10px with a soft floor shadow; header and log stay upright. The canvas widens to fit the tilted floor instead of shrinking the text.

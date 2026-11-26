@@ -47,13 +47,14 @@ Colors: `blue cyan green amber purple red orange text dim faint`, or the short f
   "pipeline": ["decode", "~filter (dashed)", "score"],
   "footer": "line under a dashed rule",
   "status": "ok|warn|dev|off|none|done", "statusText": "custom badge text",
-  "dashed": true, "color": "override layer color" }
+  "dashed": true, "color": "override layer color", "emphasis": true }
 ```
 
 - `h` is optional. If you leave it out, the box grows to fit its content, and the wires and log are placed after measuring.
 - The render order inside a box is fixed: title → sub → text → rows → pipeline → lines → footer.
 - `rows` is a module table. Give a row an `id` so wires and rail items can anchor to it. A wire on side l/r of a row uses the box edge at the row's height.
 - `dashed` means planned or optional. The statuses `dev`, `none` and `off` are also drawn dashed.
+- `emphasis` marks one focal node. The `violet` theme draws it with an accent border and a tinted fill.
 
 Status glyphs: ● ok (pulses), ▲ warn, ◐ dev, ■ off, ○ none, ✓ done. Only use a status the source actually supports.
 

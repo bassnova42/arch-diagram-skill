@@ -6,7 +6,7 @@
 
 **Claude Code**와 **Codex**에서 사용할 수 있습니다.
 
-GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 Codex가 구조를 파악해 아키텍처 다이어그램을 그립니다. 기본은 어두운 "터미널 설계도" 스타일이며, 다른 7가지 스타일도 고를 수 있습니다([스타일](#스타일)). 연결선 위로 패킷이 흐르고, 모듈끼리 데이터를 주고받을 때마다 하단 로그에 한 줄씩 실시간으로 추가됩니다.
+GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 Codex가 구조를 파악해 아키텍처 다이어그램을 그립니다. 기본은 어두운 "터미널 설계도" 스타일이며, 다른 8가지 스타일도 고를 수 있습니다([스타일](#스타일)). 연결선 위로 패킷이 흐르고, 모듈끼리 데이터를 주고받을 때마다 하단 로그에 한 줄씩 실시간으로 추가됩니다.
 
 **아래는 오픈소스 프로젝트 [morluto/rea](https://github.com/morluto/rea)의 아키텍처 다이어그램으로, 이 Skill이 GitHub 저장소를 읽고 자동으로 생성했습니다:**
 
@@ -20,7 +20,7 @@ GitHub 저장소, 기술 글, PDF, 로컬 프로젝트를 주면 Claude Code나 
 - **의미 있는 색 구분**: 박스는 종류별로 색을 입히고, 연결선은 흐름 유형(요청, 쓰기, 콜백, 비동기 등)에 따라 색과 실선/점선으로 구분합니다. 그룹 테두리는 포함 관계를 나타냅니다.
 - **실시간 트레이스 로그**: 패킷이 연결선 끝에 닿으면 하단에 `시간 · 유형 · A → B · 설명` 한 줄이 추가됩니다.
 - **자체 점검**: 헤드리스 Chrome으로 박스 겹침, 글자 넘침, 박스를 관통하는 선, 가려진 라벨을 찾아내고, 깔끔해질 때까지 Claude가 고칩니다.
-- **8가지 스타일**: 나이트 터미널, 청사진, 제도 용지, 화이트보드 손그림, 볼드 브루탈, 형광 CRT, 소프트 카드, 아이소 샌드박스. 한마디로 바꿀 수 있습니다.
+- **9가지 스타일**: 나이트 터미널, 청사진, 제도 용지, 화이트보드 손그림, 볼드 브루탈, 형광 CRT, 소프트 카드, 순백 카드, 아이소 샌드박스. 한마디로 바꿀 수 있습니다.
 - **다양한 출력 형식**:
   - 인터랙티브 단일 HTML 파일
   - PNG (2배 해상도)
@@ -98,20 +98,21 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 
 ## 스타일
 
-기본 스타일은 **나이트 터미널**(`terminal`)이고, 그 밖에 7가지 스타일이 있습니다. 요청할 때 스타일만 말하면 됩니다. 예: `블루프린트 스타일로 그려줘`, `화이트보드 손그림으로`, `3D 아이소메트릭으로 바꿔줘`. 말하지 않으면 기본 스타일로 그립니다.
+기본 스타일은 **나이트 터미널**(`terminal`)이고, 그 밖에 8가지 스타일이 있습니다. 요청할 때 스타일만 말하면 됩니다. 예: `블루프린트 스타일로 그려줘`, `화이트보드 손그림으로`, `3D 아이소메트릭으로 바꿔줘`. 말하지 않으면 기본 스타일로 그립니다.
 
 - **겉모습만 바뀝니다**: 같은 spec이 모든 스타일로 그려집니다. 구조, 텍스트, 좌표는 그대로이고 자체 점검도 같습니다. 기존 다이어그램도 "소프트 카드 스타일로 바꿔줘" 한마디면 다시 그립니다.
 - **색의 의미는 그대로**: 스타일마다 배색은 다르지만 파랑, 청록, 초록, 호박, 보라가 가리키는 요소 종류는 같아서 범례를 그대로 읽을 수 있습니다.
 - **모든 출력 지원**: HTML, PNG, MP4, GIF는 어떤 스타일로든 내보낼 수 있습니다(Mermaid는 Mermaid가 직접 배치하므로 스타일이 없습니다).
 
-같은 다이어그램(Elephant-Goldfish 예시)을 8가지 스타일로 나란히 본 모습:
+같은 다이어그램(Elephant-Goldfish 예시)을 9가지 스타일로 나란히 본 모습:
 
 | | |
 |---|---|
 | <img src="themes/terminal.jpg" width="420"><br>**나이트 터미널(기본)** · `terminal` | <img src="themes/blueprint.jpg" width="420"><br>**청사진** · `blueprint` |
 | <img src="themes/drafting.jpg" width="420"><br>**제도 용지** · `drafting` | <img src="themes/whiteboard.jpg" width="420"><br>**화이트보드 손그림** · `whiteboard` |
 | <img src="themes/brutalism.jpg" width="420"><br>**볼드 브루탈** · `brutalism` | <img src="themes/crt.jpg" width="420"><br>**형광 CRT** · `crt` |
-| <img src="themes/saas.jpg" width="420"><br>**소프트 카드** · `saas` | <img src="themes/isometric.jpg" width="420"><br>**아이소 샌드박스** · `isometric` |
+| <img src="themes/saas.jpg" width="420"><br>**소프트 카드** · `saas` | <img src="themes/violet.jpg" width="420"><br>**순백 카드** · `violet` |
+| <img src="themes/isometric.jpg" width="420"><br>**아이소 샌드박스** · `isometric` | |
 
 명령줄에서는 `--theme`을 쓰거나 spec에 `"theme": "blueprint"`를 넣습니다:
 
@@ -119,7 +120,7 @@ npx @rokoai/arch-diagram export my.html my.png my.mp4 --seconds 30
 npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 ```
 
-아래는 새로 추가된 7가지 스타일의 상세 설명입니다. 예시는 모두 [morluto/rea](https://github.com/morluto/rea) 다이어그램(이 페이지 맨 위와 같은 spec)입니다.
+아래는 새로 추가된 8가지 스타일의 상세 설명입니다. 예시는 모두 [morluto/rea](https://github.com/morluto/rea) 다이어그램(이 페이지 맨 위와 같은 spec)입니다.
 
 ### 청사진 · `blueprint`
 
@@ -181,6 +182,16 @@ npx @rokoai/arch-diagram build my.spec.json my.html --theme whiteboard
 - **요청 예**: `깔끔하고 밝게` · `제품 문서 스타일로` · `SaaS 스타일`
 
 [▶ 20초 영상(MP4)](themes/saas.mp4)
+
+### 순백 카드 · `violet`
+
+![순백 카드](themes/violet.gif)
+
+- **모습**: 순백 캔버스에 흰 카드를 놓고 부제를 제목 위에 표시합니다. 보라색 포커스 카드는 강조 테두리와 옅은 채움으로 구분합니다. 카드 테두리는 중립으로 두고 요소 색은 라벨, 범례, 연결선, `emphasis` 카드가 맡습니다. 연결선은 얇고 분기점에서 부드럽게 휩니다.
+- **어울리는 곳**: 제품 문서, 설계 메모, 기술 블로그. 조용한 포커스 카드와 소프트 카드보다 편집 디자인다운 리듬이 필요한 곳.
+- **요청 예**: `순백 카드` · `흰 카드` · `violet`
+
+[▶ 20초 영상(MP4)](themes/violet.mp4)
 
 ### 아이소 샌드박스 · `isometric`
 
